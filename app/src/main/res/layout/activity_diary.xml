@@ -59,8 +59,6 @@
             android:id="@+id/diary_list"
             android:layout_gravity="top"/>
 
-
-
     </LinearLayout>
 
     <ImageButton

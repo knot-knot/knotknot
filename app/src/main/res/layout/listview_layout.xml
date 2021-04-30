@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="170dp">
 
-
+  <!--일기 하나의 레이아웃-->
 
     <LinearLayout
         android:orientation="vertical"

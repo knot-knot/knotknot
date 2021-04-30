@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="pattern">
+        <item>고민있어요</item>
+        <item>칭찬받고 싶어요</item>
+        <item>하고싶은게 있어요</item>
+        <item>행복해요</item>
+        <item>웃겨요</item>
+        <item>슬퍼요</item>
+        <item>화나요</item>
+    </string-array>
+
+</resources>
