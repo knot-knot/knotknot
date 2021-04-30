@@ -10,18 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_marginBottom="10dp">
 
         <ImageButton
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="left"
-            android:src="@drawable/back"
+            android:src="@drawable/back5"
             android:background="#ffffff"
             />
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="match_parent"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,33 +28,30 @@
             android:text="date"
             android:id="@+id/date"
             android:textSize="40dp" />
-        <ImageView
-            android:layout_width="80dp"
-            android:layout_height="match_parent"/>
         <ImageButton
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/next"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="#ffffff"
+            android:src="@drawable/next5"
             android:layout_gravity="right"
-            android:background="#ffffff"/>
+            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:gravity="center">
 
         <ImageView
             android:layout_width="70dp"
-            android:layout_height="550dp"
+            android:layout_height="450dp"
             android:src="@drawable/diary_bar"
             android:layout_gravity="left"/>
 
         <ListView
             android:layout_width="wrap_content"
-            android:layout_height="550dp"
+            android:layout_height="450dp"
             android:id="@+id/diary_list"
             android:layout_gravity="top"/>
 
@@ -68,6 +63,7 @@
         android:background="#ffffff"
         android:src="@drawable/add"
         android:layout_marginRight="20dp"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right"
+        android:id="@+id/diary_add"/>
 
 </LinearLayout>
