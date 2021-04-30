@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="170dp">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:layout_weight="4">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/imageView1"
+           /> <!--누구의 일기인지-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WHO"
+                android:textSize="40dp"
+                android:textColor="#666666"
+                android:layout_weight="1" />
+            </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        >
+
+        <ImageView
+            android:id="@+id/textView1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:gravity="center_vertical" /><!--감정티콘-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="SAMPLE"
+            android:id="@+id/textView2"
+            android:textSize="25dp"
+            android:textColor="#666666"
+            android:background="#F08080"
+            android:layout_weight="1" /><!--글씨 크기 작게하고-->
+    </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:textSize="20dp"
+            android:text="작성일자"
+            android:gravity="right"
+            android:layout_marginRight="20dp"
+            />
+    </LinearLayout>
+</LinearLayout>
