@@ -17,7 +17,8 @@
             android:layout_height="70dp"
             android:layout_gravity="left"
             android:src="@drawable/back"
-            android:background="#0"/>
+            android:background="#ffffff"
+            />
         <ImageView
             android:layout_width="80dp"
             android:layout_height="match_parent"/>
@@ -37,7 +38,7 @@
             android:layout_height="70dp"
             android:src="@drawable/next"
             android:layout_gravity="right"
-            android:background="#0"/>
+            android:background="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout
@@ -64,7 +65,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:background="#0"
+        android:background="#ffffff"
         android:src="@drawable/add"
         android:layout_marginRight="20dp"
         android:layout_gravity="right"/>
