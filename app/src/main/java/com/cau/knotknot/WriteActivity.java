@@ -10,10 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.cau.knotknot.Diary;
-import com.cau.knotknot.RetrofitClient;
-import com.cau.knotknot.RetrofitInterface;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,18 +40,28 @@ public class WriteActivity extends AppCompatActivity {
 
         spinner.setAdapter(sAdapter);
 
+        String username = "danny1234";  // 사용자 아이디
+        String description = "오늘은 처음으로....";  // 일기 내용
+        int emotion = 1;                            // 패턴 종류
+        String createdAt = "2021-05-03 15:26:00";  // 작성 시간
 
+
+
+        /* 저장 버튼을 눌렀을 때 */
+        createDiary(username, description, emotion, createdAt);
+
+    }
+
+    private void createDiary(String username, String description, int emotion, String createdAt) {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        // 일기 예시
+        // 일기 데이터 Body
         Map<String, Object> map = new HashMap<>();
-        map.put("writer", "danny1234");
-        map.put("description", "오늘은 처음으로 무당벌레를 발견해서 기뻤다. 생각보다 엄청 작았다.");
-        map.put("emotion", 1);
-        map.put("createdAt", "2021-05-03 15:26:00");
-
-
+        map.put("writer", username);
+        map.put("description", description);
+        map.put("emotion", emotion);
+        map.put("createdAt", createdAt);
 
         retrofitInterface.createDiary(map).enqueue((new Callback<Void>() {
             @Override
@@ -65,7 +71,7 @@ public class WriteActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
-
+                Log.d("retrofit", "Diary post failed");
             }
         }));
     }
