@@ -9,12 +9,12 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.QueryMap;
+import retrofit2.http.Query;
 
 public interface RetrofitInterface {
 
-    @GET("diary/{familyId}")
-    Call<List<Diary>> getDiary(@Path("familyId") long familyId, @QueryMap Map<String, String> parameter);
+    @GET("diary/{username}")
+    Call<List<Diary>> getDiary(@Path("username") String username, @Query("date") String date);
 
     @POST("diary")
     @FormUrlEncoded
