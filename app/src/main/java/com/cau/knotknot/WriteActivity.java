@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +24,8 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.cau.knotknot.R.drawable.emo1;
 
 public class WriteActivity extends AppCompatActivity {
     //일기 작성
@@ -34,6 +39,8 @@ public class WriteActivity extends AppCompatActivity {
     String createdAt;
     Button save;
     EditText et;
+    ImageView write_emo;
+    Drawable emo;
 
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
@@ -50,6 +57,32 @@ public class WriteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int emoticon = intent.getIntExtra("emoticon",0);
         String emoDate = intent.getStringExtra("emoDate");
+
+        write_emo =(ImageView)findViewById(R.id.write_emo);
+        switch (emoticon){
+            case 1:
+                emo=getResources().getDrawable(R.drawable.emo1);
+                break;
+            case 2:
+                emo=getResources().getDrawable(R.drawable.emo2);
+                break;
+            case 3:
+                emo=getResources().getDrawable(R.drawable.emo3);
+                break;
+            case 4:
+                emo=getResources().getDrawable(R.drawable.emo4);
+                break;
+            case 5:
+                emo=getResources().getDrawable(R.drawable.emo5);
+                break;
+            case 6:
+                emo=getResources().getDrawable(R.drawable.emo6);
+                break;
+            case 7:
+                emo=getResources().getDrawable(R.drawable.emo7);
+                break;
+        }
+        write_emo.setImageDrawable(emo);
 
         String username = "danny1234";  // 사용자 아이디
         //String description = "오늘은 처음으로....";  // 일기 내용
@@ -78,6 +111,7 @@ public class WriteActivity extends AppCompatActivity {
                 /* 저장 버튼을 눌렀을 때 */
                 createDiary(username, description, emoticon, createdAt);
 
+                Toast.makeText(getApplicationContext(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
             }
         });
 
