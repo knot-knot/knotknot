@@ -56,7 +56,7 @@ public class DiaryActivity extends AppCompatActivity {
 
 
         String username = "danny1234";       // 사용자 아이디
-        String date = "2021-05-05";          // 조회하려는 날짜 (첫 화면에선 오늘로 해야 함)
+        String date = "2021-05-07";          // 조회하려는 날짜 (첫 화면에선 오늘로 해야 함)
 
         getDiary(username, date);
 
@@ -71,7 +71,7 @@ public class DiaryActivity extends AppCompatActivity {
     }
 
     private void getDiary(String username, String date){
-        /*retrofitClient = RetrofitClient.getInstance();
+        retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
         retrofitInterface.getDiary(username, date).enqueue(new Callback<List<Diary>>() {
@@ -83,12 +83,12 @@ public class DiaryActivity extends AppCompatActivity {
                     return;
                 }
 
-                List<Diary> diaries = response.body();*/
+                List<Diary> diaries = response.body();
 
-                List<Diary> diaries = new ArrayList();
-                diaries.add(new Diary(10000, "오늘은...", 1, "2021-05-06 13:00:00","민수"));
-                diaries.add(new Diary(10001, "오늘은...", 1, "2021-05-06 13:00:00","민수"));
-                diaries.add(new Diary(10002, "오늘은...", 1, "2021-05-06 13:00:00","민수"));
+                Log.d("retrofit", "Diary fetch success");
+
+
+
                 //////////////////////////////////////////////
                 /* diaries 리스트를 ListView 로 표현하는 코드 */
                 //////////////////////////////////////////////
@@ -96,13 +96,6 @@ public class DiaryActivity extends AppCompatActivity {
                 //adapter생성
                 adapter = new DiaryAdapter();
 
-
-                // Diary 객체에서 데이터 추출하는 거 예시
-                //int i = 0;
-                //diaries.get(i).getUserNickname();   // "은진이"
-                //diaries.get(i).getDescription();    // "오늘은 집에 혼자 있..."
-                //diaries.get(i).getEmotion();        // 1
-                //diaries.get(i).getCreatedAt();      // "2021-04-27 13:56:00"
 
                 Drawable draw = getResources().getDrawable(R.drawable.useremo);
 
@@ -138,8 +131,7 @@ public class DiaryActivity extends AppCompatActivity {
                     adapter.addItem( draw,emo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
                 }
                 listView.setAdapter(adapter);
-        /*
-                Log.d("retrofit", "Diary fetch success: "+diaries.get(0).toString());
+
 
 
             }
@@ -148,6 +140,6 @@ public class DiaryActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<List<Diary>> call, @NonNull Throwable t) {
                 Log.d("retrofit", "Diary fetch failed");
             }
-        });*/
+        });
     }
 }
