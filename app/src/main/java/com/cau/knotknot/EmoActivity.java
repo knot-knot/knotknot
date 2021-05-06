@@ -68,5 +68,14 @@ public class EmoActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         };
+
+        emo1.setOnClickListener(clickListener);
+        emo2.setOnClickListener(clickListener);
+        emo3.setOnClickListener(clickListener);
+        emo4.setOnClickListener(clickListener);
+        emo5.setOnClickListener(clickListener);
+        emo6.setOnClickListener(clickListener);
+        emo7.setOnClickListener(clickListener);
+
     }
 }
