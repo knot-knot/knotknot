@@ -11,7 +11,7 @@ public class ListViewItem {
     private String description;
     private String createdAt;
 
-    public void setIcon(Drawable icon) {
+    public void setEmoticon(Drawable icon) {
         emoticon = icon ;
     }
     public void setUseremo(Drawable icon) {

@@ -87,8 +87,6 @@ public class DiaryActivity extends AppCompatActivity {
 
                 Log.d("retrofit", "Diary fetch success");
 
-
-
                 //////////////////////////////////////////////
                 /* diaries 리스트를 ListView 로 표현하는 코드 */
                 //////////////////////////////////////////////
@@ -96,8 +94,7 @@ public class DiaryActivity extends AppCompatActivity {
                 //adapter생성
                 adapter = new DiaryAdapter();
 
-
-                Drawable draw = getResources().getDrawable(R.drawable.useremo);
+                Drawable useremo = getResources().getDrawable(R.drawable.useremo);
 
                 int l=diaries.size();
                 for(int i=0;i<l;i++){
@@ -128,7 +125,7 @@ public class DiaryActivity extends AppCompatActivity {
                             emo=getResources().getDrawable(R.drawable.emo8);
                             break;
                     }
-                    adapter.addItem( draw,emo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
+                    adapter.addItem( emo,useremo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
                 }
                 listView.setAdapter(adapter);
 

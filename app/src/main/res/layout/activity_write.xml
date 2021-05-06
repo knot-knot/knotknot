@@ -13,7 +13,8 @@
         android:layout_height="130dp"
         android:id="@+id/write_emo"
         android:layout_gravity="center_horizontal"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"/>
 
 
     <EditText
