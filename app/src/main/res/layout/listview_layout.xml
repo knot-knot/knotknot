@@ -39,12 +39,12 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/lv_layout">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="120dp"
             android:text="SAMPLE"
             android:id="@+id/lv_description"
             android:textSize="18dp"
@@ -52,15 +52,29 @@
             android:layout_weight="1"
             android:padding="15dp"/><!--글씨 크기 작게하고-->
 
-        <TextView
+    </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/reply"/>
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:textSize="15dp"/>
+            <!--댓글 수-->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:textSize="15dp"
             android:text="작성일자"
-            android:gravity="right"
+            android:layout_marginLeft="60dp"
             android:layout_marginRight="15dp"
             android:id="@+id/lv_createdAt"
-            android:layout_marginBottom="6dp"/>
-    </LinearLayout>
+            />
+        </LinearLayout>
 </LinearLayout>
 </LinearLayout>
