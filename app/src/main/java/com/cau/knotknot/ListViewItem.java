@@ -26,8 +26,9 @@ public class ListViewItem {
     public void setDate(String date) {
         createdAt = date ;
     }
+
     public Drawable getEmoticon() {
-        return emoticon;
+        return this.emoticon;
     }
 
     public Drawable getUseremo() {

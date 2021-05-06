@@ -131,14 +131,17 @@ public class DiaryActivity extends AppCompatActivity {
                         case 7:
                             emo=getResources().getDrawable(R.drawable.emo7);
                             break;
+                        case 8:
+                            emo=getResources().getDrawable(R.drawable.emo8);
+                            break;
                     }
-                    adapter.addItem(draw, emo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
+                    adapter.addItem( draw,emo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
                 }
-
+                listView.setAdapter(adapter);
         /*
                 Log.d("retrofit", "Diary fetch success: "+diaries.get(0).toString());
 
-                listView.setAdapter(adapter);
+
             }
 
             @Override
