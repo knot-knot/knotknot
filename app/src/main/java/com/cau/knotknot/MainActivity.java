@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     s_pw = pw.getText().toString();
                 }
 
-                s_pw = sha256ToString(s_pw);
+                //s_pw = sha256ToString(s_pw);
                 //Log.d("maintodiary","s_id : "+s_id+" s_pw:"+s_pw);
                 //if(s_id.equals("a")&&s_pw.equals("a")) {
                 //    Log.d("maintodiary", "equal판별은 함");

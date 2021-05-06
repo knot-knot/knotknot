@@ -44,7 +44,7 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="450dp"
             android:src="@drawable/diary_bar"
             android:layout_gravity="left"/>
@@ -62,6 +62,7 @@
         android:layout_height="70dp"
         android:background="#ffffff"
         android:src="@drawable/add"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="20dp"
         android:layout_gravity="right"
         android:id="@+id/diary_add"/>

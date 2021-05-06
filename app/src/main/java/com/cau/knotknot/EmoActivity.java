@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class EmoActivity extends AppCompatActivity {
 
-    ImageButton emo1, emo2, emo3, emo4, emo5, emo6, emo7;
+    ImageButton emo1, emo2, emo3, emo4, emo5, emo6, emo7,emo8;
     Button.OnClickListener clickListener;
     int emoticon;
 
@@ -29,6 +29,7 @@ public class EmoActivity extends AppCompatActivity {
         emo5 = (ImageButton)findViewById(R.id.emo5);
         emo6 = (ImageButton)findViewById(R.id.emo6);
         emo7 = (ImageButton)findViewById(R.id.emo7);
+        emo8 = (ImageButton)findViewById(R.id.emo8);
 
         clickListener = new Button.OnClickListener(){
             @Override
@@ -55,6 +56,9 @@ public class EmoActivity extends AppCompatActivity {
                     case R.id.emo7:
                         emoticon =7;
                         break;
+                    case R.id.emo8:
+                        emoticon =8;
+                        break;
                 }
 
                 long now = System.currentTimeMillis();
@@ -77,6 +81,6 @@ public class EmoActivity extends AppCompatActivity {
         emo5.setOnClickListener(clickListener);
         emo6.setOnClickListener(clickListener);
         emo7.setOnClickListener(clickListener);
-
+        emo8.setOnClickListener(clickListener);
     }
 }

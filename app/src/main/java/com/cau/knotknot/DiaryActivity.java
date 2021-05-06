@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -94,17 +95,53 @@ public class DiaryActivity extends AppCompatActivity {
 
                 //adapter생성
                 adapter = new DiaryAdapter();
-                listView.setAdapter(adapter);
+
 
                 // Diary 객체에서 데이터 추출하는 거 예시
-                int i = 0;
-                diaries.get(i).getUserNickname();   // "은진이"
-                diaries.get(i).getDescription();    // "오늘은 집에 혼자 있..."
-                diaries.get(i).getEmotion();        // 1
-                diaries.get(i).getCreatedAt();      // "2021-04-27 13:56:00"
+                //int i = 0;
+                //diaries.get(i).getUserNickname();   // "은진이"
+                //diaries.get(i).getDescription();    // "오늘은 집에 혼자 있..."
+                //diaries.get(i).getEmotion();        // 1
+                //diaries.get(i).getCreatedAt();      // "2021-04-27 13:56:00"
 
+                Drawable draw = getResources().getDrawable(R.drawable.useremo);
+
+                int l=diaries.size();
+                for(int i=0;i<l;i++){
+                    Drawable emo=getResources().getDrawable(R.drawable.emo1);
+                    switch (diaries.get(i).getEmotion()){
+                        case 1:
+                            emo=getResources().getDrawable(R.drawable.emo1);
+                            break;
+                        case 2:
+                            emo=getResources().getDrawable(R.drawable.emo2);
+                            break;
+                        case 3:
+                            emo=getResources().getDrawable(R.drawable.emo3);
+                            break;
+                        case 4:
+                            emo=getResources().getDrawable(R.drawable.emo4);
+                            break;
+                        case 5:
+                            emo=getResources().getDrawable(R.drawable.emo5);
+                            break;
+                        case 6:
+                            emo=getResources().getDrawable(R.drawable.emo6);
+                            break;
+                        case 7:
+                            emo=getResources().getDrawable(R.drawable.emo7);
+                            break;
+                        case 8:
+                            emo=getResources().getDrawable(R.drawable.emo8);
+                            break;
+                    }
+                    adapter.addItem( draw,emo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
+                }
+                listView.setAdapter(adapter);
         /*
                 Log.d("retrofit", "Diary fetch success: "+diaries.get(0).toString());
+
+
             }
 
             @Override
