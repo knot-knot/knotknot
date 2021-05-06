@@ -69,6 +69,7 @@ public class EmoActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),WriteActivity.class);
                 intent.putExtra("emoticon",emoticon);
                 intent.putExtra("emoDate",emoDate);
+                intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
         };
