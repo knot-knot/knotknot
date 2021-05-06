@@ -110,8 +110,6 @@ public class WriteActivity extends AppCompatActivity {
 
                 /* 저장 버튼을 눌렀을 때 */
                 createDiary(username, description, emoticon, createdAt);
-
-                Toast.makeText(getApplicationContext(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -132,6 +130,10 @@ public class WriteActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                 Log.d("retrofit", "Diary post success");
+                Toast.makeText(getApplicationContext(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
+                startActivity(i);
             }
 
             @Override
