@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -31,6 +32,8 @@ public class DiaryActivity extends AppCompatActivity {
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("MM월 dd일 (E)");
     ImageButton add;
+    ListView listView;
+    DiaryAdapter  adapter;
 
     private String getTime(){
         mNow = System.currentTimeMillis();
@@ -43,9 +46,12 @@ public class DiaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
 
+
         add = (ImageButton)findViewById(R.id.diary_add);
         date = (TextView)findViewById(R.id.date);
         date.setText(getTime());//수정할것!-->캘린더 선택한 날짜로 바꿔야함
+        listView = (ListView)findViewById(R.id.diary_list);
+
 
         String username = "danny1234";       // 사용자 아이디
         String date = "2021-05-05";          // 조회하려는 날짜 (첫 화면에선 오늘로 해야 함)
@@ -55,7 +61,7 @@ public class DiaryActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    Intent intent = new Intent(getApplicationContext(),WriteActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),EmoActivity.class);
                     startActivity(intent);
 
             }
@@ -81,13 +87,16 @@ public class DiaryActivity extends AppCompatActivity {
                 /* diaries 리스트를 ListView 로 표현하는 코드 */
                 //////////////////////////////////////////////
 
+                //adapter생성
+                adapter = new DiaryAdapter();
+                listView.setAdapter(adapter);
+
                 // Diary 객체에서 데이터 추출하는 거 예시
                 int i = 0;
                 diaries.get(i).getUserNickname();   // "은진이"
                 diaries.get(i).getDescription();    // "오늘은 집에 혼자 있..."
                 diaries.get(i).getEmotion();        // 1
                 diaries.get(i).getCreatedAt();      // "2021-04-27 13:56:00"
-
 
                 Log.d("retrofit", "Diary fetch success: "+diaries.get(0).toString());
             }

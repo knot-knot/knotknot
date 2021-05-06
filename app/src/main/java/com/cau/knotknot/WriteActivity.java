@@ -3,13 +3,18 @@ package com.cau.knotknot;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,8 +29,11 @@ public class WriteActivity extends AppCompatActivity {
         날짜는 '+'버튼을 누른 activity_diary.xml에 떠있는 날짜로 설정해야할 듯
         저장 버튼을 누르면 작성됨
      */
-    Spinner spinner;
-    ArrayAdapter sAdapter;
+    String username;
+    String description;
+    String createdAt;
+    Button save;
+    EditText et;
 
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
@@ -35,20 +43,42 @@ public class WriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
-        spinner = (Spinner) findViewById(R.id.pattern); //butterknife 없을경우
-        sAdapter = ArrayAdapter.createFromResource(this, R.array.pattern, android.R.layout.simple_spinner_dropdown_item);
+        save = (Button)findViewById(R.id.save);
 
-        spinner.setAdapter(sAdapter);
+        et = (EditText)findViewById(R.id.et);
+        description = et.getText().toString();
+
+        Intent intent = getIntent();
+        int emoticon = intent.getIntExtra("emoticon",0);
+        String emoDate = intent.getStringExtra("emoDate");
 
         String username = "danny1234";  // 사용자 아이디
-        String description = "오늘은 처음으로....";  // 일기 내용
-        int emotion = 1;                            // 패턴 종류
-        String createdAt = "2021-05-03 15:26:00";  // 작성 시간
+        //String description = "오늘은 처음으로....";  // 일기 내용
+        //int emotion = 1;                            // 패턴 종류
+        //String createdAt = "2021-05-03 15:26:00";  // 작성 시간
 
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //시간 생성
+                long now = System.currentTimeMillis();
+                Date mDate = new Date(now);
+                SimpleDateFormat shortDate = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat longDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
+                createdAt = shortDate.format(mDate);
 
-        /* 저장 버튼을 눌렀을 때 */
-        createDiary(username, description, emotion, createdAt);
+                if(emoDate.equals(createdAt)) {
+                    createdAt = longDate.format(mDate);
+                }else{
+                    createdAt = emoDate + " 23:59:59";
+                }
+
+                /* 저장 버튼을 눌렀을 때 */
+                createDiary(username, description, emoticon, createdAt);
+
+            }
+        });
 
     }
 

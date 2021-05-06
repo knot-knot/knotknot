@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="170dp">
+    android:layout_height="170dp"
+    android:orientation="horizontal">
 
   <!--일기 하나의 레이아웃-->
+    <ImageView
+        android:id="@+id/lv_emoticon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_vertical" /><!--감정티콘-->
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,39 +23,33 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/imageView1"
+            android:id="@+id/lv_useremo"
            /> <!--누구의 일기인지-->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="WHO"
-                android:textSize="40dp"
+                android:textSize="30dp"
                 android:textColor="#666666"
-                android:layout_weight="1" />
-            </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        >
-
-        <ImageView
-            android:id="@+id/textView1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:gravity="center_vertical" /><!--감정티콘-->
+                android:layout_weight="1"
+                android:id="@+id/lv_user"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/lv_layout">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:text="SAMPLE"
-            android:id="@+id/textView2"
+            android:id="@+id/lv_description"
             android:textSize="25dp"
             android:textColor="#666666"
-            android:background="#F08080"
-            android:layout_weight="1" /><!--글씨 크기 작게하고-->
-    </LinearLayout>
+            android:layout_weight="1"
+            android:padding="15dp"/><!--글씨 크기 작게하고-->
 
         <TextView
             android:layout_width="match_parent"
@@ -58,6 +58,8 @@
             android:text="작성일자"
             android:gravity="right"
             android:layout_marginRight="20dp"
-            />
+            android:id="@+id/lv_createdAt"
+            android:layout_marginBottom="10dp"/>
     </LinearLayout>
+</LinearLayout>
 </LinearLayout>

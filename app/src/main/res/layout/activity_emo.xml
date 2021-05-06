@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EmoActivity"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="감정이모티콘을"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:layout_marginTop="60dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="골라주세요!"
+        android:layout_gravity="center"
+        android:textSize="30dp"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="60dp"
+        android:id="@+id/emos">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/emo_line1">
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/emo1"
+                android:id="@+id/emo1"
+                />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/emo2"
+                android:id="@+id/emo2"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/emo3"
+                android:id="@+id/emo3"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@id/emo_line1"
+            android:layout_marginTop="20dp"
+            android:id="@+id/emo_line2">
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/emo4"
+                android:id="@+id/emo4"
+                />
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/emo5"
+                android:id="@+id/emo5"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/emo6"
+                android:id="@+id/emo6"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_below="@id/emo_line2"
+            android:layout_marginTop="20dp"
+            android:id="@+id/emo_line3">
+
+
+            <ImageButton
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/emo7"
+                android:id="@+id/emo7"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
