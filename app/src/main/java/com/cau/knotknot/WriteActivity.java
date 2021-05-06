@@ -111,7 +111,9 @@ public class WriteActivity extends AppCompatActivity {
                 /* 저장 버튼을 눌렀을 때 */
                 createDiary(username, description, emoticon, createdAt);
 
+
                 Toast.makeText(getApplicationContext(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
