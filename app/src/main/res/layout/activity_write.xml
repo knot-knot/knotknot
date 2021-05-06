@@ -22,6 +22,7 @@
         android:layout_height="320dp"
         android:layout_margin="20dp"
         android:background="@drawable/edit_layout"
+        android:fontFamily="@font/nixgonm"
         android:hint="무슨 일이 있었나요?"
         android:gravity="top"
         android:padding="20dp"

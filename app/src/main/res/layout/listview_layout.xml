@@ -48,6 +48,7 @@
             android:layout_height="120dp"
             android:text="SAMPLE"
             android:id="@+id/lv_description"
+            android:fontFamily="@font/nixgonm"
             android:textSize="18dp"
             android:textColor="#666666"
             android:layout_weight="1"
