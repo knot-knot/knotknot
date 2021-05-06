@@ -53,7 +53,6 @@ public class WriteActivity extends AppCompatActivity {
         save = (Button)findViewById(R.id.save);
 
         et = (EditText)findViewById(R.id.et);
-        description = et.getText().toString();
 
         Intent intent = getIntent();
         int emoticon = intent.getIntExtra("emoticon",0);
@@ -106,6 +105,8 @@ public class WriteActivity extends AppCompatActivity {
                 }else{
                     createdAt = emoDate + " 23:59:59";
                 }
+
+                description = et.getText().toString();
 
                 /* 저장 버튼을 눌렀을 때 */
                 createDiary(username, description, emoticon, createdAt);

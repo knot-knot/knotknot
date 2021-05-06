@@ -21,6 +21,15 @@ public class Diary {
     @Expose
     private String userNickname;
 
+    public Diary(Integer diaryId, String description, Integer emotion, String createdAt, String userNickname) {
+        super();
+        this.diaryId = diaryId;
+        this.description = description;
+        this.emotion = emotion;
+        this.createdAt = createdAt;
+        this.userNickname = userNickname;
+    }
+
     public Integer getDiaryId() {
         return diaryId;
     }

@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -70,7 +71,7 @@ public class DiaryActivity extends AppCompatActivity {
     }
 
     private void getDiary(String username, String date){
-        retrofitClient = RetrofitClient.getInstance();
+        /*retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
         retrofitInterface.getDiary(username, date).enqueue(new Callback<List<Diary>>() {
@@ -82,8 +83,12 @@ public class DiaryActivity extends AppCompatActivity {
                     return;
                 }
 
-                List<Diary> diaries = response.body();
+                List<Diary> diaries = response.body();*/
 
+                List<Diary> diaries = new ArrayList();
+                diaries.add(new Diary(10000, "오늘은...", 1, "2021-05-06 13:00:00","민수"));
+                diaries.add(new Diary(10001, "오늘은...", 1, "2021-05-06 13:00:00","민수"));
+                diaries.add(new Diary(10002, "오늘은...", 1, "2021-05-06 13:00:00","민수"));
                 //////////////////////////////////////////////
                 /* diaries 리스트를 ListView 로 표현하는 코드 */
                 //////////////////////////////////////////////
@@ -130,6 +135,7 @@ public class DiaryActivity extends AppCompatActivity {
                     adapter.addItem(draw, emo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
                 }
 
+        /*
                 Log.d("retrofit", "Diary fetch success: "+diaries.get(0).toString());
 
                 listView.setAdapter(adapter);
@@ -139,6 +145,6 @@ public class DiaryActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<List<Diary>> call, @NonNull Throwable t) {
                 Log.d("retrofit", "Diary fetch failed");
             }
-        });
+        });*/
     }
 }
