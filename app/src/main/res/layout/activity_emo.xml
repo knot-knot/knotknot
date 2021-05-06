@@ -41,6 +41,7 @@
                 android:src="@drawable/emo1"
                 android:id="@+id/emo1"
                 android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
                 />
             <ImageButton
                 android:layout_width="110dp"
@@ -48,7 +49,8 @@
                 android:src="@drawable/emo2"
                 android:id="@+id/emo2"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:background="@android:color/transparent"/>
 
             <ImageButton
                 android:layout_width="110dp"
@@ -56,6 +58,7 @@
                 android:src="@drawable/emo3"
                 android:id="@+id/emo3"
                 android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
                 />
 
         </LinearLayout>
@@ -74,6 +77,7 @@
                 android:src="@drawable/emo4"
                 android:id="@+id/emo4"
                 android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
                 />
             <ImageButton
                 android:layout_width="110dp"
@@ -81,7 +85,8 @@
                 android:src="@drawable/emo5"
                 android:id="@+id/emo5"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:background="@android:color/transparent"/>
 
             <ImageButton
                 android:layout_width="110dp"
@@ -89,6 +94,7 @@
                 android:src="@drawable/emo6"
                 android:id="@+id/emo6"
                 android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
                 />
 
         </LinearLayout>
@@ -112,6 +118,7 @@
                 android:layout_marginRight="20dp"
                 android:src="@drawable/emo7"
                 android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
                 />
             <ImageButton
                 android:id="@+id/emo8"
@@ -121,7 +128,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/emo8"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:background="@android:color/transparent"/>
 
         </LinearLayout>
     </RelativeLayout>

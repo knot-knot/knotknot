@@ -74,7 +74,7 @@ public class DiaryAdapter extends BaseAdapter {
     public void addItem(Drawable icon, Drawable useremo, String user, String desc, String createdAt) {
         ListViewItem item = new ListViewItem();
 
-        item.setIcon(icon);
+        item.setEmoticon(icon);
         item.setUseremo(useremo);
         item.setUser(user);
         item.setDesc(desc);

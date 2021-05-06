@@ -104,7 +104,7 @@ public class DiaryActivity extends AppCompatActivity {
                 //diaries.get(i).getEmotion();        // 1
                 //diaries.get(i).getCreatedAt();      // "2021-04-27 13:56:00"
 
-                Drawable draw = getResources().getDrawable(R.drawable.useremo);
+                Drawable useremo = getResources().getDrawable(R.drawable.useremo);
 
                 int l=diaries.size();
                 for(int i=0;i<l;i++){
@@ -135,7 +135,7 @@ public class DiaryActivity extends AppCompatActivity {
                             emo=getResources().getDrawable(R.drawable.emo8);
                             break;
                     }
-                    adapter.addItem( draw,emo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
+                    adapter.addItem( emo,useremo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
                 }
                 listView.setAdapter(adapter);
         /*
