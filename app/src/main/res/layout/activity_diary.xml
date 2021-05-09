@@ -49,10 +49,10 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="50dp"
+            android:layout_width="39dp"
             android:layout_height="450dp"
-            android:src="@drawable/diary_bar"
-            android:layout_gravity="left"/>
+            android:layout_gravity="left"
+            android:src="@drawable/diary_bar2" />
 
         <ListView
             android:layout_width="match_parent"
