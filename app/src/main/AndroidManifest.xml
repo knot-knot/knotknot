@@ -10,10 +10,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Knotknot"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EmoActivity"></activity>
-        <activity android:name=".WriteActivity"></activity>
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".EmoActivity" />
+        <activity android:name=".WriteActivity" />
         <activity android:name=".DiaryActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
