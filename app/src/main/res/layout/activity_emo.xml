@@ -12,124 +12,129 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="감정이모티콘을"
+        android:fontFamily="@font/nixgonm"
         android:layout_gravity="center"
         android:textSize="30dp"
-        android:layout_marginTop="60dp"/>
+        android:layout_marginTop="80dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="골라주세요!"
+        android:text="골라주세요!\n"
+        android:fontFamily="@font/nixgonm"
         android:layout_gravity="center"
         android:textSize="30dp"/>
 
 
     <RelativeLayout
+        android:id="@+id/emos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:id="@+id/emos">
+        android:layout_height="449dp"
+        android:layout_margin="20dp">
+
         <LinearLayout
+            android:id="@+id/emo_line1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_centerHorizontal="true"
-            android:id="@+id/emo_line1">
+            android:orientation="horizontal">
 
             <ImageButton
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:src="@drawable/emo1"
                 android:id="@+id/emo1"
-                android:scaleType="centerCrop"
-                android:background="@android:color/transparent"
-                />
-            <ImageButton
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:src="@drawable/emo2"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/emo1" />
+
+            <ImageButton
                 android:id="@+id/emo2"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:background="@android:color/transparent"/>
-
-            <ImageButton
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:src="@drawable/emo3"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/emo2" />
+
+            <ImageButton
                 android:id="@+id/emo3"
-                android:scaleType="centerCrop"
+                android:padding="9dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:background="@android:color/transparent"
-                />
+                android:scaleType="centerCrop"
+                android:src="@drawable/emo3" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/emo_line2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/emo_line1"
-            android:id="@+id/emo_line2">
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
 
             <ImageButton
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:src="@drawable/emo4"
                 android:id="@+id/emo4"
-                android:scaleType="centerCrop"
-                android:background="@android:color/transparent"
-                />
-            <ImageButton
+                android:padding="4dp"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:src="@drawable/emo5"
-                android:id="@+id/emo5"
-                android:layout_gravity="center"
+                android:background="@android:color/transparent"
                 android:scaleType="centerCrop"
-                android:background="@android:color/transparent"/>
+                android:src="@drawable/emo4" />
 
             <ImageButton
+                android:id="@+id/emo5"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:src="@drawable/emo6"
-                android:id="@+id/emo6"
-                android:scaleType="centerCrop"
+                android:layout_gravity="center"
                 android:background="@android:color/transparent"
-                />
+                android:scaleType="centerCrop"
+                android:src="@drawable/emo5" />
+
+            <ImageButton
+                android:id="@+id/emo6"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@android:color/transparent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/emo6" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/emo_line3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_below="@id/emo_line2"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:layout_below="@id/emo_line2"
-            android:id="@+id/emo_line3">
+            android:orientation="horizontal">
 
 
             <ImageButton
                 android:id="@+id/emo7"
+                android:padding="7dp"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/emo7"
-                android:scaleType="centerCrop"
                 android:background="@android:color/transparent"
-                />
+                android:scaleType="centerCrop"
+                android:src="@drawable/emo7" />
+
             <ImageButton
                 android:id="@+id/emo8"
+                android:padding="4dp"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:src="@drawable/emo8"
+                android:background="@android:color/transparent"
                 android:scaleType="centerCrop"
-                android:background="@android:color/transparent"/>
+                android:src="@drawable/emo8" />
 
         </LinearLayout>
     </RelativeLayout>
