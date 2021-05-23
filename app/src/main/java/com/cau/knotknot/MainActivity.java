@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        id = (EditText)findViewById(R.id.main_id);
+        //id = (EditText)findViewById(R.id.main_id);
         pw = (EditText)findViewById(R.id.main_pw);
 
         login = (Button)findViewById(R.id.main_login);
