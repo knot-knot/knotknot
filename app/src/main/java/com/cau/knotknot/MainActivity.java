@@ -1,5 +1,6 @@
 package com.cau.knotknot;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,15 +9,27 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText id, pw;
     Button login, join;
     String s_id, s_pw;
+
+    private RetrofitClient retrofitClient;
+    private RetrofitInterface retrofitInterface;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +72,44 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    private void login(String email, String password) {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+
+        // 로그인 데이터 Body
+        Map<String, Object> map = new HashMap<>();
+        map.put("email", email);
+        map.put("password", password);
+
+        retrofitInterface.login(map).enqueue((new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+                if(response.isSuccessful()) {
+                    LoginResponse loginResponse = response.body();
+                    String token = loginResponse.getToken();
+                    retrofitClient = RetrofitClient.getInstanceWithToken(token);
+
+                    Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
+                    startActivity(i);
+                }
+                // 로그인 실패
+                else if (response.code() == 401) {
+                    Toast.makeText(getApplicationContext(), "이메일 또는 비밀번호가 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
+
+                    // 필드 비우기
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext(),"오류가 발생했습니다.",Toast.LENGTH_SHORT).show();
+
+                Log.d("retrofit", "Login failed");
+            }
+        }));
+    }
+
     public static String sha256ToString(String input) {
         String result = null;
         try {

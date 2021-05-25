@@ -34,7 +34,7 @@ public class WriteActivity extends AppCompatActivity {
         날짜는 '+'버튼을 누른 activity_diary.xml에 떠있는 날짜로 설정해야할 듯
         저장 버튼을 누르면 작성됨
      */
-    String username;
+
     String description;
     String createdAt;
     Button save;
@@ -84,7 +84,6 @@ public class WriteActivity extends AppCompatActivity {
         }
         write_emo.setImageDrawable(emo);
 
-        String username = "danny1234";  // 사용자 아이디
         //String description = "오늘은 처음으로....";  // 일기 내용
         //int emotion = 1;                            // 패턴 종류
         //String createdAt = "2021-05-03 15:26:00";  // 작성 시간
@@ -109,26 +108,25 @@ public class WriteActivity extends AppCompatActivity {
                 description = et.getText().toString();
 
                 /* 저장 버튼을 눌렀을 때 */
-                createDiary(username, description, emoticon, createdAt);
+                createDiary(description, emoticon, createdAt);
             }
         });
 
     }
 
-    private void createDiary(String username, String description, int emotion, String createdAt) {
+    private void createDiary(String description, int emotion, String createdAt) {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
         // 일기 데이터 Body
         Map<String, Object> map = new HashMap<>();
-        map.put("writer", username);
         map.put("description", description);
         map.put("emotion", emotion);
         map.put("createdAt", createdAt);
 
-        retrofitInterface.createDiary(map).enqueue((new Callback<Void>() {
+        retrofitInterface.createDiary(map).enqueue((new Callback<String>() {
             @Override
-            public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
                 Log.d("retrofit", "Diary post success");
                 Toast.makeText(getApplicationContext(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
 
@@ -137,7 +135,7 @@ public class WriteActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.d("retrofit", "Diary post failed");
             }
         }));
