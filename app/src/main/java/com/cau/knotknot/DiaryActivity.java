@@ -55,10 +55,9 @@ public class DiaryActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.diary_list);
 
 
-        String username = "danny1234";       // 사용자 아이디
-        String date = "2021-05-07";          // 조회하려는 날짜 (첫 화면에선 오늘로 해야 함)
+        String date = "2021-05-07";   // 수정할것!! 조회하려는 날짜 (첫 화면에선 오늘로 해야 함)
 
-        getDiary(username, date);
+        getDiary(date);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,11 +69,11 @@ public class DiaryActivity extends AppCompatActivity {
         });
     }
 
-    private void getDiary(String username, String date){
+    private void getDiary(String date){
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-        retrofitInterface.getDiary(username, date).enqueue(new Callback<List<Diary>>() {
+        retrofitInterface.getDiary(date).enqueue(new Callback<List<Diary>>() {
             @Override
             public void onResponse(@NonNull Call<List<Diary>> call, @NonNull Response<List<Diary>> response) {
                 if (!response.isSuccessful()) {
