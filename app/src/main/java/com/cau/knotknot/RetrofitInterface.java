@@ -16,36 +16,43 @@ import retrofit2.http.Query;
 public interface RetrofitInterface {
 
     //로그인
-    @POST("login")
+    @POST("users/login")
     @FormUrlEncoded
-    Call<Void> login(@FieldMap Map<String, Object> fields);
+    Call<LoginResponse> login(@FieldMap Map<String, Object> fields);
 
     //회원가입
-    @POST("register")
+    @POST("users/register")
     @FormUrlEncoded
-    Call<Void> register(@FieldMap Map<String, Object> fields);
+    Call<String> register(@FieldMap Map<String, Object> fields);
 
-    //로그아웃
-    @GET("logout")
-    Call<Void> logout();
+    //가족 수락 요청들 보기
+    @GET("users/requests")
+    Call<String> getRequests();
+
+    //요청 수락하기
+    @POST("users/accept")
+    @FormUrlEncoded
+    Call<String> accept(@FieldMap Map<String, Object> fields);
+
 
     //일기 불러오기
-    @GET("diary/{username}")
-    Call<List<Diary>> getDiary(@Path("username") String username, @Query("date") String date);
+    @GET("diary")
+    Call<List<Diary>> getDiary(@Query("date") String date);
 
     //일기 작성
     @POST("diary")
     @FormUrlEncoded
-    Call<Void> createDiary(@FieldMap Map<String, Object> fields);
+    Call<String> createDiary(@FieldMap Map<String, Object> fields);
 
     //일기 수정
     @PUT("diary/{diaryId}")
     @FormUrlEncoded
-    Call<Void> updateDiary(@Path("diaryId") int diaryId, @FieldMap Map<String, Object> fields);
+    Call<String> updateDiary(@Path("diaryId") int diaryId, @FieldMap Map<String, Object> fields);
 
     //일기 삭제
     @DELETE("diary/{diaryId}")
-    Call<Void> deleteDiary(@Path("diaryId") int diaryId);
+    Call<String> deleteDiary(@Path("diaryId") int diaryId);
+
 
     //코멘트 불러오기 (일기 1개 당)
     @GET("comments/{diaryId}")
@@ -54,15 +61,15 @@ public interface RetrofitInterface {
     //코멘트 작성
     @POST("comments/{diaryId}")
     @FormUrlEncoded
-    Call<Void> createComments(@FieldMap Map<String, Object> fields);
+    Call<String> createComments(@FieldMap Map<String, Object> fields);
 
     //코멘트 수정
     @PUT("comments/{commentsId}")
     @FormUrlEncoded
-    Call<Void> updateComments(@Path("commentsId") int commentsId, @FieldMap Map<String, Object> fields);
+    Call<String> updateComments(@Path("commentsId") int commentsId, @FieldMap Map<String, Object> fields);
 
     //코멘트 삭제
     @DELETE("comments/{commentsId}")
-    Call<Void> deleteComments(@Path("commentsId") int commentsId);
+    Call<String> deleteComments(@Path("commentsId") int commentsId);
 
 }
