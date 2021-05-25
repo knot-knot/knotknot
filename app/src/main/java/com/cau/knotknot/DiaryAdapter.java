@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,6 +56,21 @@ public class DiaryAdapter extends BaseAdapter {
         descriptionView.setText(listViewItem.getDesc());
         dateView.setText(listViewItem.getDate());
 
+        //final String text = items.get(position); -> pos
+        Button lv_edit = (Button)convertView.findViewById(R.id.lv_edit);
+        lv_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //수정버튼 클릭시
+            }
+        });
+        Button lv_delete = (Button)convertView.findViewById(R.id.lv_delete);
+        lv_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //삭제버튼 클릭시
+            }
+        });
         return convertView;
     }
 
