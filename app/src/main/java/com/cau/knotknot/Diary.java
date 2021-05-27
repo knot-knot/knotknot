@@ -17,16 +17,25 @@ public class Diary {
     @SerializedName("createdAt")
     @Expose
     private String createdAt;
+    @SerializedName("writer")
+    @Expose
+    private String writer;
+    @SerializedName("commentsCount")
+    @Expose
+    private Integer commentsCount;
     @SerializedName("user.nickname")
     @Expose
     private String userNickname;
 
-    public Diary(Integer diaryId, String description, Integer emotion, String createdAt, String userNickname) {
+
+    public Diary(Integer diaryId, String description, Integer emotion, String createdAt, String writer, Integer commentsCount, String userNickname) {
         super();
         this.diaryId = diaryId;
         this.description = description;
         this.emotion = emotion;
         this.createdAt = createdAt;
+        this.writer = writer;
+        this.commentsCount = commentsCount;
         this.userNickname = userNickname;
     }
 
@@ -62,6 +71,22 @@ public class Diary {
         this.createdAt = createdAt;
     }
 
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public Integer getCommentsCount() {
+        return commentsCount;
+    }
+
+    public void setCommentsCount(Integer commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
     public String getUserNickname() {
         return userNickname;
     }
@@ -89,6 +114,14 @@ public class Diary {
         sb.append("createdAt");
         sb.append('=');
         sb.append(((this.createdAt == null)?"<null>":this.createdAt));
+        sb.append(',');
+        sb.append("writer");
+        sb.append('=');
+        sb.append(((this.writer == null)?"<null>":this.writer));
+        sb.append(',');
+        sb.append("commentsCount");
+        sb.append('=');
+        sb.append(((this.commentsCount == null)?"<null>":this.commentsCount));
         sb.append(',');
         sb.append("userNickname");
         sb.append('=');

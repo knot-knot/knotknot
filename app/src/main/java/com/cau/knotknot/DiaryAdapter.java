@@ -1,7 +1,9 @@
 package com.cau.knotknot;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +11,24 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DiaryAdapter extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
     private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
+
+    private RetrofitClient retrofitClient = RetrofitClient.getInstance();
+    private RetrofitInterface retrofitInterface = RetrofitClient.getRetrofitInterface();
 
     // ListViewAdapter의 생성자
     public DiaryAdapter() {
@@ -52,7 +66,7 @@ public class DiaryAdapter extends BaseAdapter {
         // 아이템 내 각 위젯에 데이터 반영
         emoticonView.setImageDrawable(listViewItem.getEmoticon());
         useremoView.setImageDrawable(listViewItem.getUseremo());
-        userView.setText(listViewItem.getUser());
+        userView.setText(listViewItem.getNickname());
         descriptionView.setText(listViewItem.getDesc());
         dateView.setText(listViewItem.getDate());
 
@@ -62,6 +76,7 @@ public class DiaryAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //수정버튼 클릭시
+                int diaryId = listViewItem.getDiaryId();
             }
         });
         Button lv_delete = (Button)convertView.findViewById(R.id.lv_delete);
@@ -69,6 +84,27 @@ public class DiaryAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //삭제버튼 클릭시
+
+                int diaryId = listViewItem.getDiaryId();
+
+                retrofitInterface.deleteDiary(diaryId).enqueue((new Callback<String>() {
+                    @Override
+                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                        Log.d("retrofit", "Diary delete success");
+//                        Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT).show();
+//
+//                        Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
+//                        startActivity(i);
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                        Log.d("retrofit", "Diary delete failed");
+                    }
+                }));
+
+
+
             }
         });
         return convertView;
@@ -87,14 +123,17 @@ public class DiaryAdapter extends BaseAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable icon, Drawable useremo, String user, String desc, String createdAt) {
+    public void addItem(Drawable icon, Drawable useremo, String nickname, String desc, String createdAt, int commentsCount, int diaryId, String email) {
         ListViewItem item = new ListViewItem();
 
         item.setEmoticon(icon);
         item.setUseremo(useremo);
-        item.setUser(user);
+        item.setNickname(nickname);
         item.setDesc(desc);
         item.setDate(createdAt);
+        item.setCommentsCount(commentsCount);
+        item.setDiaryId(diaryId);
+        item.setEmail(email);
 
         listViewItemList.add(item);
     }

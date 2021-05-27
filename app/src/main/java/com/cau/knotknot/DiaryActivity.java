@@ -33,6 +33,7 @@ public class DiaryActivity extends AppCompatActivity {
     long mNow;
     Date mDate;
     SimpleDateFormat mFormat = new SimpleDateFormat("MM월 dd일 (E)");
+    SimpleDateFormat mFormat_server = new SimpleDateFormat("YYYY-MM-dd");
     ImageButton add;
     ListView listView;
     DiaryAdapter  adapter;
@@ -54,10 +55,10 @@ public class DiaryActivity extends AppCompatActivity {
         date.setText(getTime());//수정할것!-->캘린더 선택한 날짜로 바꿔야함
         listView = (ListView)findViewById(R.id.diary_list);
 
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
 
-        String date = "2021-05-07";   // 수정할것!! 조회하려는 날짜 (첫 화면에선 오늘로 해야 함)
-
-        getDiary(date);
+        getDiary(mFormat_server.format(mDate));
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +85,7 @@ public class DiaryActivity extends AppCompatActivity {
 
                 List<Diary> diaries = response.body();
 
-                Log.d("retrofit", "Diary fetch success");
+                Log.d("retrofit", "Diary fetch success - date: "+date);
 
                 //////////////////////////////////////////////
                 /* diaries 리스트를 ListView 로 표현하는 코드 */
@@ -124,7 +125,15 @@ public class DiaryActivity extends AppCompatActivity {
                             emo=getResources().getDrawable(R.drawable.emo8);
                             break;
                     }
-                    adapter.addItem( emo,useremo,diaries.get(i).getUserNickname(),diaries.get(i).getDescription(),diaries.get(i).getCreatedAt());
+                    adapter.addItem(emo,
+                            useremo,
+                            diaries.get(i).getUserNickname(),
+                            diaries.get(i).getDescription(),
+                            diaries.get(i).getCreatedAt().substring(11),    // 날짜를 제외하고 시간만 출력
+                            diaries.get(i).getCommentsCount(),
+                            diaries.get(i).getDiaryId(),
+                            diaries.get(i).getWriter()
+                    );
                 }
                 listView.setAdapter(adapter);
 
