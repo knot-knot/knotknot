@@ -1,5 +1,6 @@
 package com.cau.knotknot;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -8,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -17,14 +19,29 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class JoinActivity extends AppCompatActivity {
+
+
+    private RetrofitClient retrofitClient = RetrofitClient.getInstance();
+    private RetrofitInterface retrofitInterface = RetrofitClient.getRetrofitInterface();
+
+    ViewDialog viewDialog = new ViewDialog(this);
 
     Button join_email_send,join_email_permit,join_profic_button;
     //     인증메일 보내기o  인증번호 일치체크o  파일선택창띄우기
@@ -201,7 +218,59 @@ public class JoinActivity extends AppCompatActivity {
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
+        join_new_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //..show gif
+                viewDialog.showDialog();
+
+                join(join_email.getText().toString(),
+                        sha256ToString(join_pwd.getText().toString()),
+                        join_nickname.getText().toString(),
+                        join_birth.getText().toString(),
+                        ""
+                );
+
+                // 여기에서 빙글빙글 돌아가는 애니메이션이 뜨면 자연스러울 것 같습니다.
+            }
+        });
     }
+
+    private void join(String email, String password, String nickname, String birth, String family_member) {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+
+        // 회원가입 데이터 Body
+        Map<String, Object> map = new HashMap<>();
+        map.put("email", email);
+        map.put("password", password);
+        map.put("nickname", nickname);
+        map.put("birth", birth);
+        map.put("family_member", family_member);
+
+        retrofitInterface.join(map).enqueue((new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                String message = response.body();
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
+                if(response.isSuccessful()) {
+                    Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                    startActivity(i);
+                }
+                viewDialog.hideDialog();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext(),"오류가 발생했습니다.",Toast.LENGTH_SHORT).show();
+
+                Log.d("retrofit", "Login failed");
+            }
+        }));
+    }
+
     private void updateLabel() {
         String myFormat = "yyyy/MM/dd";    // 출력형식   2018/11/28
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.KOREA);
@@ -230,5 +299,21 @@ public class JoinActivity extends AppCompatActivity {
         }
         //System.out.println("newWord = (" + newWord + "), length = " + length);
         return newWord.toString();
+    }
+    public static String sha256ToString(String input) {
+        String result = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(input.getBytes());
+            byte[] bytes = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for (byte b : bytes) {
+                sb.append(String.format("%02x", b));
+            }
+            result = sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

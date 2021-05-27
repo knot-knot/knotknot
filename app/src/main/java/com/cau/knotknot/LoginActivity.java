@@ -1,26 +1,41 @@
 package com.cau.knotknot;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private RetrofitClient retrofitClient;
+    private RetrofitInterface retrofitInterface;
 
     EditText id, pw;
     Button login, join;
     String s_id, s_pw;
 
+    ViewDialog viewDialog = new ViewDialog(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         id = (EditText)findViewById(R.id.login_id);
         pw = (EditText)findViewById(R.id.login_pw);
 
@@ -32,40 +47,75 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if ( id.getText().toString().length() == 0 ) {
+
                     //공백일 때 에러 메시지
-                } else {
+                }
+                else if ( pw.getText().toString().length() == 0 ) {
+
+                    //공백일 때 에러 메시지
+                }
+                else {
+                    //..show gif
+                    viewDialog.showDialog();
+
                     s_id = id.getText().toString();
-                }
+                    s_pw = sha256ToString(pw.getText().toString());
 
-                if ( pw.getText().toString().length() == 0 ) {
-                    //공백일 때 에러 메시지
-                } else {
-                    s_pw = pw.getText().toString();
+                    login(s_id, s_pw);
                 }
-
-                //s_pw = sha256ToString(s_pw);
-                //Log.d("maintodiary","s_id : "+s_id+" s_pw:"+s_pw);
-                //if(s_id.equals("a")&&s_pw.equals("a")) {
-                //    Log.d("maintodiary", "equal판별은 함");
-                Intent intent = new Intent(getApplicationContext(), DiaryActivity.class);
-                intent.putExtra("message", "DiaryActivity");
-                startActivity(intent);
-                //}
-                //else{
-                //    Log.d("maintodiary", "equal아님");
-                //}
             }
         });
 
         join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(getApplicationContext(),JoinActivity.class);
                 startActivity(intent);
             }
         });
 
     }
+    private void login(String email, String password) {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+
+        // 로그인 데이터 Body
+        Map<String, Object> map = new HashMap<>();
+        map.put("email", email);
+        map.put("password", password);
+
+        retrofitInterface.login(map).enqueue((new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+                if(response.isSuccessful()) {
+                    LoginResponse loginResponse = response.body();
+                    String token = loginResponse.getToken();
+                    retrofitClient = RetrofitClient.getInstanceWithToken(token);
+
+                    Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
+                    startActivity(i);
+                }
+                // 로그인 실패
+                else if (response.code() == 401) {
+                    Toast.makeText(getApplicationContext(), "이메일 또는 비밀번호가 올바르지 않습니다.", Toast.LENGTH_SHORT).show();
+
+                    // 필드 비우기
+                }
+                viewDialog.hideDialog();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext(),"네트워크가 원활하지 않습니다.",Toast.LENGTH_SHORT).show();
+
+                Log.d("retrofit", "Login failed");
+                viewDialog.hideDialog();
+
+            }
+        }));
+    }
+
     public static String sha256ToString(String input) {
         String result = null;
         try {

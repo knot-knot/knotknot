@@ -21,9 +21,9 @@ public interface RetrofitInterface {
     Call<LoginResponse> login(@FieldMap Map<String, Object> fields);
 
     //회원가입
-    @POST("users/register")
+    @POST("users/join")
     @FormUrlEncoded
-    Call<String> register(@FieldMap Map<String, Object> fields);
+    Call<String> join(@FieldMap Map<String, Object> fields);
 
     //가족 수락 요청들 보기
     @GET("users/requests")

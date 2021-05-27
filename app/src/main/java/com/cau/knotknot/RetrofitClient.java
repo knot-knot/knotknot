@@ -8,14 +8,16 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClient {
     private static RetrofitClient instance = null;
     private static RetrofitInterface retrofitInterface;
-    private static final String baseUrl = "http://10.0.2.2:3000";
+    private static final String baseUrl = "http://knotknot.xyz";
 
     private static Retrofit.Builder builder = new Retrofit.Builder()
             .baseUrl(baseUrl)
+            .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create());
 
     private RetrofitClient() {
