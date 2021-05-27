@@ -45,6 +45,8 @@ public class WriteActivity extends AppCompatActivity {
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
 
+    ViewDialog viewDialog = new ViewDialog(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +93,8 @@ public class WriteActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewDialog.showDialog();
+
                 //시간 생성
                 long now = System.currentTimeMillis();
                 Date mDate = new Date(now);
@@ -132,6 +136,7 @@ public class WriteActivity extends AppCompatActivity {
 
                 Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
                 startActivity(i);
+                viewDialog.hideDialog();
             }
 
             @Override
