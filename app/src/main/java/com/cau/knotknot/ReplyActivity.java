@@ -16,6 +16,7 @@ public class ReplyActivity extends AppCompatActivity {
     Button reply_diary_modify, reply_diary_delete;
     ListView reply;
     EditText reply_add;
+    int diaryId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class ReplyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reply);
 
         Intent intent = getIntent();//일기 id 가져옴
-
+        diaryId =  getIntent().getIntExtra("diaryId",0);
         reply_description = (TextView)findViewById(R.id.reply_description);
         reply_diary_modify = (Button)findViewById(R.id.reply_diary_modify);
         reply_diary_delete =(Button)findViewById(R.id.reply_diary_delete);
