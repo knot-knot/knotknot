@@ -8,23 +8,20 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DiaryActivity extends AppCompatActivity {
+public class DiaryActivity extends AppCompatActivity implements View.OnClickListener{
 
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
@@ -137,6 +134,17 @@ public class DiaryActivity extends AppCompatActivity {
                 }
                 listView.setAdapter(adapter);
 
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView parent, View v, int position, long id) {
+                        Intent intent = new Intent(getApplicationContext(), ReplyActivity.class);
+                        /* putExtra의 첫 값은 식별 태그, 뒤에는 다음 화면에 넘길 값 */
+                        intent.putExtra("diaryId", Integer.toString(diaries.get(position).getDiaryId()));
+                        //추가로 넘겨야할 정보 있으면 여기 작성
+                        startActivity(intent);
+                    }
+                });
+
 
 
             }
@@ -146,5 +154,10 @@ public class DiaryActivity extends AppCompatActivity {
                 Log.d("retrofit", "Diary fetch failed");
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

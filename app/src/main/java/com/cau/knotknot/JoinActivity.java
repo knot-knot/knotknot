@@ -170,10 +170,10 @@ public class JoinActivity extends AppCompatActivity {
                 chk = join_pwd.getText().toString().matches(pattern_pwd);
                 if(!chk){
                     join_pwd_chk.setEnabled(false);
-                    join_pwd_rule.setTextColor(0xff0000);
+                    join_pwd_rule.setTextColor(0xFF0000);
                 }else{
                     join_pwd_chk.setEnabled(true);
-                    join_pwd_rule.setTextColor(0xc8c8c8);
+                    join_pwd_rule.setTextColor(0xC8C8C8);
                 }
             }
 

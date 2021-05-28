@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:orientation="horizontal">
+
+    <!--일기 하나의 레이아웃-->
+    <ImageView
+        android:id="@+id/rl_useremo"
+        android:layout_width="100dp"
+        android:layout_height="113dp"
+        android:layout_gravity="center_vertical" /><!--유저사진-->
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:layout_weight="4">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WHO"
+                android:textSize="20dp"
+                android:textColor="#666666"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/rl_user"/>
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textSize="10dp"
+                android:text="삭제"
+                android:id="@+id/rl_delete"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lv_layout">   <!--레이아웃 작게 새로 만들것-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:text="SAMPLE"
+                android:id="@+id/rl_description"
+                android:fontFamily="@font/nixgonm"
+                android:textSize="18dp"
+                android:textColor="#666666"
+                android:layout_weight="1"
+                android:padding="15dp" /><!--글씨 크기 작게하고-->
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
