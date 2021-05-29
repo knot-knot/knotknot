@@ -45,7 +45,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/lv_layout">   <!--레이아웃 작게 새로 만들것-->
+            android:background="@drawable/rl_layout">   <!--레이아웃 작게 새로 만들것-->
 
             <TextView
                 android:layout_width="match_parent"
