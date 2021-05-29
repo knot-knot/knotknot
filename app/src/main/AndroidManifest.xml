@@ -12,15 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CalendarActivity"></activity>
-        <activity
-            android:name=".ReplyActivity"
-            android:windowSoftInputMode="adjustPan">
+        <activity android:name=".CalendarActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ReplyActivity"
+            android:windowSoftInputMode="adjustPan">
         </activity>
         <activity android:name=".JoinActivity" />
         <activity android:name=".LoginActivity"></activity>
