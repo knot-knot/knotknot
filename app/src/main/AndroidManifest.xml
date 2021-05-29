@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ReplyActivity"
+        <activity android:name=".CalendarActivity"></activity>
+        <activity
+            android:name=".ReplyActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".JoinActivity" />
-        <activity android:name=".LoginActivity">
-
-        </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".EmoActivity" />
         <activity android:name=".WriteActivity" />
         <activity android:name=".DiaryActivity" />
