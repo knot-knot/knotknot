@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,13 +42,13 @@ public class WriteActivity extends AppCompatActivity {
     String createdAt;
     Button save;
     EditText et;
-    ImageView write_emo;
+    ImageView write_emo, et_back;
     Drawable emo;
 
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
 
-    ViewDialog viewDialog = new ViewDialog(this);
+   ViewDialog viewDialog = new ViewDialog(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +57,13 @@ public class WriteActivity extends AppCompatActivity {
 
         save = (Button)findViewById(R.id.save);
 
-        et = (EditText)findViewById(R.id.et);
-
         Intent intent = getIntent();
         int emoticon = intent.getIntExtra("emoticon",0);
         String emoDate = intent.getStringExtra("emoDate");
+
+        //작성창
+        et = (EditText)findViewById(R.id.et);
+        et_back =(ImageView)findViewById(R.id.et_back);
 
         write_emo =(ImageView)findViewById(R.id.write_emo);
         switch (emoticon){
@@ -67,6 +72,8 @@ public class WriteActivity extends AppCompatActivity {
                 break;
             case 2:
                 emo=getResources().getDrawable(R.drawable.emo2);
+                //고민있어요
+                Glide.with(this).load(R.drawable.worry).into(et_back);
                 break;
             case 3:
                 emo=getResources().getDrawable(R.drawable.emo3);
@@ -79,12 +86,17 @@ public class WriteActivity extends AppCompatActivity {
                 break;
             case 6:
                 emo=getResources().getDrawable(R.drawable.emo6);
+                Glide.with(this).load(R.drawable.praise).into(et_back);
                 break;
             case 7:
                 emo=getResources().getDrawable(R.drawable.emo7);
                 break;
+            case 8:
+                emo=getResources().getDrawable(R.drawable.emo8);
         }
         write_emo.setImageDrawable(emo);
+
+        //Glide.with(this).load(R.drawable.praise).into(et_back);
 
         //String description = "오늘은 처음으로....";  // 일기 내용
         //int emotion = 1;                            // 패턴 종류
