@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +35,7 @@ public class ReplyActivity extends AppCompatActivity {
     private RetrofitClient retrofitClient = RetrofitClient.getInstance();
     private RetrofitInterface retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-    TextView reply_description;
+    EditText reply_description;
     Button reply_diary_modify, reply_diary_delete, reply_add_btn;
     ListView reply;
     EditText reply_add;
@@ -41,11 +43,13 @@ public class ReplyActivity extends AppCompatActivity {
     String description, diary_writer;
     ImageView tv_back;
     ReplyAdapter adapter;
+    Boolean newDiary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reply);
+        newDiary = false;
 
         Intent intent = getIntent();//일기 id 가져옴
         diaryId =  getIntent().getIntExtra("diaryId",0);
@@ -53,7 +57,7 @@ public class ReplyActivity extends AppCompatActivity {
         emoticon = getIntent().getIntExtra("emoticon",0);
         diary_writer =  getIntent().getStringExtra("email");
         tv_back = (ImageView)findViewById(R.id.tv_back);
-        reply_description = (TextView)findViewById(R.id.reply_description);
+        reply_description = (EditText)findViewById(R.id.reply_description);
         reply_diary_modify = (Button)findViewById(R.id.reply_diary_modify);
         reply_diary_delete =(Button)findViewById(R.id.reply_diary_delete);
         reply = (ListView)findViewById(R.id.reply);
@@ -70,6 +74,8 @@ public class ReplyActivity extends AppCompatActivity {
 
         //가져온 정보 set()
         reply_description.setText(description);
+        reply_description.setClickable(false);
+        reply_description.setFocusable(false);
 
         //일기 배경 gif
         switch (emoticon) {
@@ -80,6 +86,7 @@ public class ReplyActivity extends AppCompatActivity {
                 Glide.with(this).load(R.drawable.worry).into(tv_back);
                 break;
             case 3:
+                Glide.with(this).load(R.drawable.want).into(tv_back);
                 break;
             case 4:
                 break;
@@ -102,6 +109,19 @@ public class ReplyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //일기 id를 가지고
                 //일기 수정(작성창) intent 띄우기
+                long now = System.currentTimeMillis();
+                Date mDate = new Date(now);
+                SimpleDateFormat shortDate = new SimpleDateFormat("yyyy-MM-dd");
+                String emoDate = shortDate.format(mDate);
+
+                Intent intent = new Intent(getApplicationContext(),WriteActivity.class);
+                intent.putExtra("emoticon",emoticon);
+                intent.putExtra("emoDate",emoDate);
+                intent.putExtra("newDiary",newDiary);
+                intent.putExtra("diaryId",diaryId);
+                intent.putExtra("description",description);
+                intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
             }
         });
 

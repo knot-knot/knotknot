@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="30dp"
         android:text="회원가입"
         android:textSize="35dp"
         android:textAlignment="center"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
          android:textColor="@color/colorWhite"
          android:background="@color/purple_200"
-        android:text="메일 전송"
+        android:text="인증 메일"
         android:id="@+id/join_email_send"
          android:fontFamily="@font/nixgonm"/>
     </LinearLayout>
@@ -110,7 +110,8 @@
             android:layout_height="wrap_content"
             android:hint=""
             android:inputType="textPassword"
-            android:id="@+id/join_pwd_chk"/>
+            android:id="@+id/join_pwd_chk"
+            android:fontFamily="@font/nixgonm"/>
     </LinearLayout>
 
     <LinearLayout

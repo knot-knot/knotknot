@@ -72,7 +72,7 @@ public class JoinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_join);
 
         join_email =(EditText)findViewById(R.id.join_email);
-        join_email_edit =(EditText)findViewById(R.id.join_email_edit);
+        //join_email_edit =(EditText)findViewById(R.id.join_email_edit);
         join_pwd =(EditText)findViewById(R.id.join_pwd);
         join_pwd_chk =(EditText)findViewById(R.id.join_pwd_chk);
         join_nickname =(EditText)findViewById(R.id.join_nickname);
@@ -80,8 +80,8 @@ public class JoinActivity extends AppCompatActivity {
         join_birth =(EditText)findViewById(R.id.join_birth);
         join_fam_code =(EditText)findViewById(R.id.join_fam_code);
 
-        join_email_send = (Button)findViewById(R.id.join_email_send);
-        join_email_permit = (Button)findViewById(R.id.join_email_permit);
+        //join_email_send = (Button)findViewById(R.id.join_email_send);
+        //join_email_permit = (Button)findViewById(R.id.join_email_permit);
         join_profic_button = (Button)findViewById(R.id.join_profic_button);
         join_birth_calendar = (Button)findViewById(R.id.join_birth_calendar);
         join_origin_code = (Button)findViewById(R.id.join_origin_code);
@@ -89,39 +89,39 @@ public class JoinActivity extends AppCompatActivity {
 
         join_pwd_rule = (TextView)findViewById(R.id.join_pwd_rule);
 
-        join_email_send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createAuthKey=createAuthKey();
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.setType("plain/text");
-                //tring[] address = {join_email};
-                email.putExtra(Intent.EXTRA_EMAIL, join_email.getText().toString());
-                email.putExtra(Intent.EXTRA_SUBJECT, "[KnotKnot] 인증 메일입니다.");
-                email.putExtra(Intent.EXTRA_TEXT, "이메일 인증을 완료해주세요.\n"
-                                        +"KnotKnot의 회원이 되시는 걸 진심으로 환영합니다\n"
-                                        +"앞으로 KnotKnot를 통하여 보다 화목한 가정되시기를 기원합니다\n"
-                                        +"아래의 인증번호를 앱에 입력해주세요\n"
-                                        +"인증번호 : "+createAuthKey+"\n"+"감사합니다.");
-                startActivity(email);
-            }
-        });
+//        join_email_send.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                createAuthKey=createAuthKey();
+//                Intent email = new Intent(Intent.ACTION_SEND);
+//                email.setType("plain/text");
+//                //tring[] address = {join_email};
+//                email.putExtra(Intent.EXTRA_EMAIL, join_email.getText().toString());
+//                email.putExtra(Intent.EXTRA_SUBJECT, "[KnotKnot] 인증 메일입니다.");
+//                email.putExtra(Intent.EXTRA_TEXT, "이메일 인증을 완료해주세요.\n"
+//                                        +"KnotKnot의 회원이 되시는 걸 진심으로 환영합니다\n"
+//                                        +"앞으로 KnotKnot를 통하여 보다 화목한 가정되시기를 기원합니다\n"
+//                                        +"아래의 인증번호를 앱에 입력해주세요\n"
+//                                        +"인증번호 : "+createAuthKey+"\n"+"감사합니다.");
+//                startActivity(email);
+//            }
+//        });
 
-        join_email_permit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String input_key=join_email_edit.getText().toString();
-
-                if (input_key.equals(createAuthKey)){
-                    join_email_edit.setText("인증되었습니다");
-                    join_email_permit.setEnabled(false);
-                }else{
-                    join_email_edit.setText("");
-                    join_email_edit.setHint("인증 번호를 입력하세요");
-                    Toast.makeText(getApplicationContext(),"인증번호가 다릅니다",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
+//        join_email_permit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String input_key=join_email_edit.getText().toString();
+//
+//                if (input_key.equals(createAuthKey)){
+//                    join_email_edit.setText("인증되었습니다");
+//                    join_email_permit.setEnabled(false);
+//                }else{
+//                    join_email_edit.setText("");
+//                    join_email_edit.setHint("인증 번호를 입력하세요");
+//                    Toast.makeText(getApplicationContext(),"인증번호가 다릅니다",Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
 
         join_profic_button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,11 +16,14 @@ public class EmoActivity extends AppCompatActivity {
     ImageButton emo1, emo2, emo3, emo4, emo5, emo6, emo7,emo8;
     Button.OnClickListener clickListener;
     int emoticon;
+    Boolean newDiary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emo);
+
+        newDiary=true;
 
         emo1 = (ImageButton)findViewById(R.id.emo1);
         emo2 = (ImageButton)findViewById(R.id.emo2);
@@ -69,6 +72,7 @@ public class EmoActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),WriteActivity.class);
                 intent.putExtra("emoticon",emoticon);
                 intent.putExtra("emoDate",emoDate);
+                intent.putExtra("newDiary",newDiary);
                 intent.setFlags(intent.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }

@@ -63,10 +63,18 @@ public class WriteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int emoticon = intent.getIntExtra("emoticon",0);
         String emoDate = intent.getStringExtra("emoDate");
+        Boolean newDiary = intent.getBooleanExtra("newDiary",true);
+        String exDiary  ="";
+
 
         //작성창
         et = (EditText)findViewById(R.id.et);
         et_back =(ImageView)findViewById(R.id.et_back);
+
+        if(!newDiary){
+            exDiary = intent.getStringExtra("description");
+            et.setText(exDiary);
+        }
 
         write_emo =(ImageView)findViewById(R.id.write_emo);
         switch (emoticon){
@@ -80,6 +88,7 @@ public class WriteActivity extends AppCompatActivity {
                 break;
             case 3:
                 emo=getResources().getDrawable(R.drawable.emo3);
+                Glide.with(this).load(R.drawable.want).into(et_back);
                 break;
             case 4:
                 emo=getResources().getDrawable(R.drawable.emo4);
@@ -123,7 +132,11 @@ public class WriteActivity extends AppCompatActivity {
                 description = et.getText().toString();
 
                 /* 저장 버튼을 눌렀을 때 */
-                createDiary(description, emoticon, createdAt);
+                if(newDiary) {
+                    createDiary(description, emoticon, createdAt);
+                }else{
+                    //updateDairy(description, emoticon ...
+                }
             }
         });
 
