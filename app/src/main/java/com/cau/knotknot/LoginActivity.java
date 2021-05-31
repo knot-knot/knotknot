@@ -22,8 +22,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private RetrofitClient retrofitClient;
-    private RetrofitInterface retrofitInterface;
+    private RetrofitClient retrofitClient = RetrofitClient.getInstance();
+    private RetrofitInterface retrofitInterface = RetrofitClient.getRetrofitInterface();
 
     EditText id, pw;
     Button login, join;

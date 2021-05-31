@@ -12,6 +12,7 @@
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/nixgonm"
         android:id="@+id/reply_description"
         android:background="@drawable/reply_diary_layout"/>
 <LinearLayout
@@ -70,6 +71,7 @@
             android:layout_width="330dp"
             android:layout_height="30dp"
             android:layout_marginRight="13dp"
+            android:fontFamily="@font/nixgonm"
             android:id="@+id/reply_add"/>
 
         <Button
@@ -79,7 +81,8 @@
             android:layout_gravity="center_vertical"
             android:textSize="20dp"
             android:textColor="@color/colorWhite"
-            android:background="@drawable/send"/>
+            android:background="@drawable/send"
+            android:id="@+id/reply_add_btn"/>
 
     </LinearLayout>
 

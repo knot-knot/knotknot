@@ -13,15 +13,19 @@ public class Comments {
     @SerializedName("createdAt")
     @Expose
     private String createdAt;
+    @SerializedName("writer")
+    @Expose
+    private String writer;
     @SerializedName("user.nickname")
     @Expose
     private String userNickname;
 
-    public Comments(Integer commentsId, String content, String createdAt, String userNickname) {
+    public Comments(Integer commentsId, String content, String createdAt, String userNickname, String writer) {
         super();
         this.commentsId = commentsId;
         this.content = content;
         this.createdAt = createdAt;
+        this.writer = writer;
         this.userNickname = userNickname;
     }
 
@@ -47,6 +51,14 @@ public class Comments {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
     }
 
     public String getUserNickname() {

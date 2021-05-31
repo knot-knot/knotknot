@@ -11,7 +11,7 @@ public class ListViewItem {
     private String description;
     private String createdAt;
     private int commentsCount;
-    private int diaryId;
+    private int primaryKey;
     private String email;
 
     public void setEmoticon(Drawable icon) {
@@ -32,8 +32,8 @@ public class ListViewItem {
     public void setCommentsCount(int num) {
         commentsCount = num ;
     }
-    public void setDiaryId(int num) {
-        diaryId = num ;
+    public void setPrimaryKey(int num) {
+        primaryKey = num ;
     }
     public void setEmail(String writer) {
         email = writer ;
@@ -63,8 +63,8 @@ public class ListViewItem {
         return this.commentsCount;
     }
 
-    public int getDiaryId() {
-        return this.diaryId;
+    public int getPrimaryKey() {
+        return this.primaryKey;
     }
 
     public String getEmail() {
