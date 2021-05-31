@@ -17,6 +17,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -86,25 +89,21 @@ public class WriteActivity extends AppCompatActivity {
         }
         write_emo.setImageDrawable(emo);
 
-        //String description = "오늘은 처음으로....";  // 일기 내용
-        //int emotion = 1;                            // 패턴 종류
-        //String createdAt = "2021-05-03 15:26:00";  // 작성 시간
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 viewDialog.showDialog();
 
                 //시간 생성
-                long now = System.currentTimeMillis();
-                Date mDate = new Date(now);
-                SimpleDateFormat shortDate = new SimpleDateFormat("yyyy-MM-dd");
-                SimpleDateFormat longDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
 
-                createdAt = shortDate.format(mDate);
+                DateTimeFormatter shortDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                DateTimeFormatter longDate = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+
+                createdAt = now.format(shortDate);
 
                 if(emoDate.equals(createdAt)) {
-                    createdAt = longDate.format(mDate);
+                    createdAt = now.format(longDate);
                 }else{
                     createdAt = emoDate + " 23:59:59";
                 }
