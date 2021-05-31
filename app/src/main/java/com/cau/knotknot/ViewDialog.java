@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
+//import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 public class ViewDialog {
 
@@ -36,17 +36,18 @@ public class ViewDialog {
         it was never easy to load gif into an ImageView before Glide or Others library
         and for doing this we need DrawableImageViewTarget to that ImageView
         */
-        GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(gifImageView);
 
+        //GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(gifImageView);
+        Glide.with(activity).load(R.drawable.loading).into(gifImageView);
         //...now load that gif which we put inside the drawble folder here with the help of Glide
 
-        Glide.with(activity)
-                .load(R.drawable.loading)
-                .placeholder(R.drawable.loading)
-                .centerCrop()
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .into(imageViewTarget);
+//        Glide.with(activity)
+//                .load(R.drawable.loading)
+//                .placeholder(R.drawable.loading)
+//                .centerCrop()
+//                .crossFade()
+//                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+//                .into(imageViewTarget);
 
         //...finaly show it
         dialog.show();

@@ -13,11 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".CalendarActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ReplyActivity"
@@ -26,8 +22,16 @@
         <activity android:name=".JoinActivity" />
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".EmoActivity" />
-        <activity android:name=".WriteActivity" />
-        <activity android:name=".DiaryActivity" />
+        <activity android:name=".WriteActivity">
+
+        </activity>
+        <activity android:name=".DiaryActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity" />
     </application>
 

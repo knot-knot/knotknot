@@ -2,14 +2,19 @@ package com.cau.knotknot;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +30,12 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
 
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
+
+    DrawerLayout drawer_layout;
+    LinearLayout drawer;
+    ImageButton openDrawer;
+    TextView show_fam_code;
+    ImageView drawer_prof;
 
     TextView date;
     long mNow;
@@ -46,6 +57,23 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
 
+        drawer_layout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawer = (LinearLayout)findViewById(R.id.drawer);
+        openDrawer = (ImageButton)findViewById(R.id.openDrawer);
+        show_fam_code = (TextView)findViewById(R.id.show_fam_code);
+        drawer_prof = (ImageView)findViewById(R.id.drawer_prof);
+
+        openDrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer_layout.openDrawer(drawer);
+            }
+        });
+
+        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED,drawer);
+
+        drawer_prof.setBackground(new ShapeDrawable(new OvalShape()));
+        drawer_prof.setClipToOutline(true);
 
         add = (ImageButton)findViewById(R.id.diary_add);
         date = (TextView)findViewById(R.id.date);
