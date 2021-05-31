@@ -169,6 +169,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                         /* putExtra의 첫 값은 식별 태그, 뒤에는 다음 화면에 넘길 값 */
                         intent.putExtra("diaryId", diaries.get(position).getDiaryId());
                         intent.putExtra("description", diaries.get(position).getDescription());
+                        intent.putExtra("emoticon",diaries.get(position).getEmotion());
                         //추가로 넘겨야할 정보 있으면 여기 작성
                         startActivity(intent);
                     }

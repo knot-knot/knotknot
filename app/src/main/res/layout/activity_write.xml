@@ -44,7 +44,9 @@
         android:layout_marginRight="20dp"
         android:layout_gravity="right"
         android:textSize="20dp"
-        android:background="#F08080"
+        android:textColor="@color/white"
+        android:background="@color/purple_200"
         android:text="저장"
-        android:id="@+id/save"/>
+        android:id="@+id/save"
+        android:fontFamily="@font/nixgonm"/>
 </LinearLayout>

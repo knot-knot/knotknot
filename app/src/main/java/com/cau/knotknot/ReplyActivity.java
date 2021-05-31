@@ -5,15 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,9 +36,9 @@ public class ReplyActivity extends AppCompatActivity {
     Button reply_diary_modify, reply_diary_delete, reply_add_btn;
     ListView reply;
     EditText reply_add;
-    int diaryId;
+    int diaryId, emoticon;
     String description;
-
+    ImageView tv_back;
     ReplyAdapter adapter;
 
     @Override
@@ -45,6 +49,8 @@ public class ReplyActivity extends AppCompatActivity {
         Intent intent = getIntent();//일기 id 가져옴
         diaryId =  getIntent().getIntExtra("diaryId",0);
         description =  getIntent().getStringExtra("description");
+        emoticon = getIntent().getIntExtra("emoticon",0);
+        tv_back = (ImageView)findViewById(R.id.tv_back);
         reply_description = (TextView)findViewById(R.id.reply_description);
         reply_diary_modify = (Button)findViewById(R.id.reply_diary_modify);
         reply_diary_delete =(Button)findViewById(R.id.reply_diary_delete);
@@ -57,6 +63,29 @@ public class ReplyActivity extends AppCompatActivity {
         //가져온 정보 set()
         reply_description.setText(description);
 
+        //일기 배경 gif
+        switch (emoticon) {
+            case 1:
+                break;
+            case 2:
+                //고민있어요
+                Glide.with(this).load(R.drawable.worry).into(tv_back);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                Glide.with(this).load(R.drawable.praise).into(tv_back);
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            default:
+        }
         // 댓글 리스트 가져오기
         getReply();
 
