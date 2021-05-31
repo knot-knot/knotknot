@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:text="수정"
         android:textSize="20dp"
+        android:fontFamily="@font/nixgonm"
         android:textColor="@color/colorWhite"
         android:background="@color/purple_200"
         android:id="@+id/reply_diary_modify"
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:text="삭제"
+        android:fontFamily="@font/nixgonm"
         android:textColor="@color/colorWhite"
         android:background="@color/purple_200"
         android:id="@+id/reply_diary_delete"/>
@@ -69,7 +71,8 @@
 
         <EditText
             android:layout_width="330dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="13dp"
             android:fontFamily="@font/nixgonm"
             android:id="@+id/reply_add"/>
@@ -79,6 +82,7 @@
             android:layout_height="30dp"
             android:gravity="center"
             android:layout_gravity="center_vertical"
+            android:layout_marginTop="10dp"
             android:textSize="20dp"
             android:textColor="@color/colorWhite"
             android:background="@drawable/send"
