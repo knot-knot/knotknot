@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
@@ -37,7 +38,7 @@ public class ReplyActivity extends AppCompatActivity {
     ListView reply;
     EditText reply_add;
     int diaryId, emoticon;
-    String description;
+    String description, diary_writer;
     ImageView tv_back;
     ReplyAdapter adapter;
 
@@ -50,6 +51,7 @@ public class ReplyActivity extends AppCompatActivity {
         diaryId =  getIntent().getIntExtra("diaryId",0);
         description =  getIntent().getStringExtra("description");
         emoticon = getIntent().getIntExtra("emoticon",0);
+        diary_writer =  getIntent().getStringExtra("email");
         tv_back = (ImageView)findViewById(R.id.tv_back);
         reply_description = (TextView)findViewById(R.id.reply_description);
         reply_diary_modify = (Button)findViewById(R.id.reply_diary_modify);
@@ -58,7 +60,13 @@ public class ReplyActivity extends AppCompatActivity {
         reply_add =(EditText)findViewById(R.id.reply_add);
         reply_add_btn =(Button)findViewById(R.id.reply_add_btn);
 
-        //일기 id로 일기 정보 get()
+        SharedPreferences pref = getSharedPreferences("user_pref", MODE_PRIVATE);
+        if (diary_writer.equals(pref.getString("email","이메일"))){
+            reply_diary_modify.setVisibility(View.VISIBLE);
+            reply_diary_delete.setVisibility(View.VISIBLE);
+            reply_diary_modify.setClickable(false);
+            reply_diary_delete.setClickable(false);
+        }
 
         //가져온 정보 set()
         reply_description.setText(description);

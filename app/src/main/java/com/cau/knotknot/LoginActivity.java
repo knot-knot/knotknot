@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -75,6 +77,32 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // 이메일 필드에서 enter 눌렀을 때 비밀번호 필드 활성화
+        id.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    pw.setFocusableInTouchMode(true);
+                    pw.requestFocus();
+                    return true;
+                }
+                return false;
+            }
+        });
+        // 비밀번호 필드에서 enter 눌렀을 때 로그인 버튼 작동
+        pw.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    login.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
     private void login(String email, String password) {
         retrofitClient = RetrofitClient.getInstance();
@@ -92,6 +120,13 @@ public class LoginActivity extends AppCompatActivity {
                     LoginResponse loginResponse = response.body();
                     String token = loginResponse.getToken();
                     retrofitClient = RetrofitClient.getInstanceWithToken(token);
+
+                    SharedPreferences pref = getSharedPreferences("user_pref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("email", email);
+                    editor.putString("nickname", loginResponse.getNickname());
+                    editor.putString("familyCode", loginResponse.getFamilyCode());
+                    editor.apply();
 
                     Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
                     startActivity(i);

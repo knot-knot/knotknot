@@ -25,15 +25,6 @@ public interface RetrofitInterface {
     @FormUrlEncoded
     Call<String> join(@FieldMap Map<String, Object> fields);
 
-    //가족 수락 요청들 보기
-    @GET("users/requests")
-    Call<String> getRequests();
-
-    //요청 수락하기
-    @POST("users/accept")
-    @FormUrlEncoded
-    Call<String> accept(@FieldMap Map<String, Object> fields);
-
 
     //일기 불러오기
     @GET("diary")

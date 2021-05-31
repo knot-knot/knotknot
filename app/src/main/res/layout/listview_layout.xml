@@ -76,7 +76,7 @@
                     android:layout_height="20dp"
                     android:text="0"
                     android:textSize="15dp"
-                    android:id="@+id/reply_count"/>
+                    android:id="@+id/lv_reply_count"/>
                 <!--댓글 수-->
             <TextView
                 android:layout_width="fill_parent"

@@ -11,6 +11,12 @@ public class LoginResponse {
     @SerializedName("token")
     @Expose
     private String token;
+    @SerializedName("nickname")
+    @Expose
+    private String nickname;
+    @SerializedName("family_code")
+    @Expose
+    private String familyCode;
     @SerializedName("error")
     @Expose
     private String error;
@@ -30,6 +36,22 @@ public class LoginResponse {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getFamilyCode() {
+        return familyCode;
+    }
+
+    public void setFamilyCode(String familyCode) {
+        this.familyCode = familyCode;
     }
 
     public String getError() {

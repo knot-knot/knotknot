@@ -35,6 +35,8 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
     public void onBindViewHolder(@NonNull CalendarViewHolder holder, int position)
     {
         holder.dayOfMonth.setText(daysOfMonth.get(position));
+        // if 해당 날짜가 도장 있는 날이라면
+        // holder.stamp.setVisibility(View.VISIBLE);
     }
 
     @Override

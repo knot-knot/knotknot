@@ -61,6 +61,7 @@ public class DiaryAdapter extends BaseAdapter {
         TextView userView = (TextView) convertView.findViewById(R.id.lv_user) ;
         TextView descriptionView = (TextView) convertView.findViewById(R.id.lv_description) ;
         TextView dateView = (TextView) convertView.findViewById(R.id.lv_createdAt) ;
+        TextView replyCountView = (TextView) convertView.findViewById(R.id.lv_reply_count) ;
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         ListViewItem listViewItem = listViewItemList.get(position);
@@ -71,6 +72,7 @@ public class DiaryAdapter extends BaseAdapter {
         userView.setText(listViewItem.getNickname());
         descriptionView.setText(listViewItem.getDesc());
         dateView.setText(listViewItem.getDate());
+        replyCountView.setText(String.valueOf(listViewItem.getCommentsCount()));
 
         //final String text = items.get(position); -> pos
 

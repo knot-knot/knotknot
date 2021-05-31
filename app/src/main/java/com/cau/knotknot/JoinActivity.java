@@ -219,6 +219,23 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        join_origin_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //..show gif
+                viewDialog.showDialog();
+
+                join(join_email.getText().toString(),
+                        sha256ToString(join_pwd.getText().toString()),
+                        join_nickname.getText().toString(),
+                        join_birth.getText().toString(),
+                        join_fam_code.getText().toString()
+                );
+
+                // 여기에서 빙글빙글 돌아가는 애니메이션이 뜨면 자연스러울 것 같습니다.
+            }
+        });
+
         join_new_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -237,7 +254,7 @@ public class JoinActivity extends AppCompatActivity {
         });
     }
 
-    private void join(String email, String password, String nickname, String birth, String family_member) {
+    private void join(String email, String password, String nickname, String birth, String family_code) {
         retrofitClient = RetrofitClient.getInstance();
         retrofitInterface = RetrofitClient.getRetrofitInterface();
 
@@ -247,7 +264,7 @@ public class JoinActivity extends AppCompatActivity {
         map.put("password", password);
         map.put("nickname", nickname);
         map.put("birth", birth);
-        map.put("family_member", family_member);
+        map.put("family_code", family_code);
 
         retrofitInterface.join(map).enqueue((new Callback<String>() {
             @Override

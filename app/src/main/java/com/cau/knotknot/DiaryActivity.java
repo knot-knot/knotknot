@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -76,6 +77,10 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         drawer_user = (TextView)findViewById(R.id.drawer_user);
         logout = (Button)findViewById(R.id.logout);
 
+        SharedPreferences pref = getSharedPreferences("user_pref", MODE_PRIVATE);
+        drawer_user.setText(pref.getString("nickname","닉네임"));
+        show_fam_code.setText(pref.getString("familyCode","가족코드"));
+
         openDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +97,13 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
                 //logout
+                SharedPreferences.Editor editor = pref.edit();
+                editor.clear();
+                editor.apply();
+
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 
@@ -215,6 +227,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                         intent.putExtra("diaryId", diaries.get(position).getDiaryId());
                         intent.putExtra("description", diaries.get(position).getDescription());
                         intent.putExtra("emoticon",diaries.get(position).getEmotion());
+                        intent.putExtra("email", diaries.get(position).getWriter());
                         //추가로 넘겨야할 정보 있으면 여기 작성
                         startActivity(intent);
                     }

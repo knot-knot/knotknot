@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
          android:textColor="@color/colorWhite"
          android:background="@color/purple_200"
-        android:text="인증 메일"
+        android:text="메일 전송"
         android:id="@+id/join_email_send"
          android:fontFamily="@font/nixgonm"/>
     </LinearLayout>
@@ -110,8 +110,7 @@
             android:layout_height="wrap_content"
             android:hint=""
             android:inputType="textPassword"
-            android:id="@+id/join_pwd_chk"
-            android:fontFamily="@font/nixgonm"/>
+            android:id="@+id/join_pwd_chk"/>
     </LinearLayout>
 
     <LinearLayout
