@@ -51,7 +51,6 @@ public class ReplyAdapter extends BaseAdapter {
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
 
-        ImageView useremoView = (ImageView) convertView.findViewById(R.id.rl_useremo) ;
         TextView userView = (TextView) convertView.findViewById(R.id.rl_user) ;
         TextView descriptionView = (TextView) convertView.findViewById(R.id.rl_description) ;
 
@@ -59,7 +58,6 @@ public class ReplyAdapter extends BaseAdapter {
         ListViewItem listViewItem = replyItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        useremoView.setImageDrawable(listViewItem.getUseremo());
         userView.setText(listViewItem.getNickname());
         descriptionView.setText(listViewItem.getDesc());
 
