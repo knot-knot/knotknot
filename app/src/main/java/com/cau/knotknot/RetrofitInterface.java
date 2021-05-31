@@ -61,7 +61,7 @@ public interface RetrofitInterface {
     //코멘트 작성
     @POST("comments/{diaryId}")
     @FormUrlEncoded
-    Call<String> createComments(@FieldMap Map<String, Object> fields);
+    Call<String> createComments(@Path("diaryId") int diaryId, @FieldMap Map<String, Object> fields);
 
     //코멘트 수정
     @PUT("comments/{commentsId}")

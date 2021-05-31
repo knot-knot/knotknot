@@ -120,15 +120,13 @@ public class ReplyAdapter extends BaseAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable useremo, String nickname, String desc, String createdAt, int commentsCount, int diaryId, String email) {
+    public void addItem(String nickname, String desc, String createdAt, int commentsId, String email) {
         ListViewItem item = new ListViewItem();
 
-        item.setUseremo(useremo);
         item.setNickname(nickname);
         item.setDesc(desc);
         item.setDate(createdAt);
-        item.setCommentsCount(commentsCount);
-        item.setDiaryId(diaryId);
+        item.setPrimaryKey(commentsId);
         item.setEmail(email);
 
         replyItemList.add(item);

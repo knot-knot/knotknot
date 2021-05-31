@@ -78,7 +78,7 @@ public class DiaryAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //수정버튼 클릭시
-                int diaryId = listViewItem.getDiaryId();
+                int diaryId = listViewItem.getPrimaryKey();
             }
         });
         Button lv_delete = (Button)convertView.findViewById(R.id.lv_delete);
@@ -87,7 +87,7 @@ public class DiaryAdapter extends BaseAdapter {
             public void onClick(View v) {
                 //삭제버튼 클릭시
 
-                int diaryId = listViewItem.getDiaryId();
+                int diaryId = listViewItem.getPrimaryKey();
 
                 retrofitInterface.deleteDiary(diaryId).enqueue((new Callback<String>() {
                     @Override
@@ -145,7 +145,7 @@ public class DiaryAdapter extends BaseAdapter {
         item.setDesc(desc);
         item.setDate(createdAt);
         item.setCommentsCount(commentsCount);
-        item.setDiaryId(diaryId);
+        item.setPrimaryKey(diaryId);
         item.setEmail(email);
 
         listViewItemList.add(item);

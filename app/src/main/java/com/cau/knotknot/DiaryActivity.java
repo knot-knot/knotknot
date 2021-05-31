@@ -167,7 +167,8 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                     public void onItemClick(AdapterView parent, View v, int position, long id) {
                         Intent intent = new Intent(getApplicationContext(), ReplyActivity.class);
                         /* putExtra의 첫 값은 식별 태그, 뒤에는 다음 화면에 넘길 값 */
-                        intent.putExtra("diaryId", Integer.toString(diaries.get(position).getDiaryId()));
+                        intent.putExtra("diaryId", diaries.get(position).getDiaryId());
+                        intent.putExtra("description", diaries.get(position).getDescription());
                         //추가로 넘겨야할 정보 있으면 여기 작성
                         startActivity(intent);
                     }
