@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -36,6 +37,8 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     ImageButton openDrawer;
     TextView show_fam_code;
     ImageView drawer_prof;
+    TextView drawer_user;
+    Button logout;
 
     TextView date;
     long mNow;
@@ -57,11 +60,14 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
 
+        //drawer
         drawer_layout = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawer = (LinearLayout)findViewById(R.id.drawer);
         openDrawer = (ImageButton)findViewById(R.id.openDrawer);
         show_fam_code = (TextView)findViewById(R.id.show_fam_code);
         drawer_prof = (ImageView)findViewById(R.id.drawer_prof);
+        drawer_user = (TextView)findViewById(R.id.drawer_user);
+        logout = (Button)findViewById(R.id.logout);
 
         openDrawer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,6 +81,15 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         drawer_prof.setBackground(new ShapeDrawable(new OvalShape()));
         drawer_prof.setClipToOutline(true);
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //logout
+            }
+        });
+
+
+        //diary화면
         add = (ImageButton)findViewById(R.id.diary_add);
         date = (TextView)findViewById(R.id.date);
         date.setText(getTime());//수정할것!-->캘린더 선택한 날짜로 바꿔야함
