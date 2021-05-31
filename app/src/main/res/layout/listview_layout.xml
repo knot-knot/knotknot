@@ -39,21 +39,9 @@
                 android:textColor="#666666"
                 android:layout_weight="1"
                 android:layout_gravity="center_vertical"
-                android:id="@+id/lv_user"/>
-            <Button
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textSize="10dp"
-                android:text="수정"
-                android:id="@+id/lv_edit"/>
-            <Button
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:textSize="10dp"
-                android:text="삭제"
-                android:id="@+id/lv_delete"/>
+                android:id="@+id/lv_user"
+                android:fontFamily="@font/nixgonm"/>
+
 
         </LinearLayout>
         <LinearLayout
@@ -91,14 +79,15 @@
                     android:id="@+id/reply_count"/>
                 <!--댓글 수-->
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="20dp"
                 android:textSize="15dp"
-                android:text="작성일자"
-                android:layout_gravity="right"
-                android:layout_marginLeft="70dp"
+                android:text="HH:MM"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:layout_marginRight="10dp"
                 android:id="@+id/lv_createdAt"
                 />
         </LinearLayout>
-    </LinearLayout>
+</LinearLayout>
 </LinearLayout>

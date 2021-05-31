@@ -19,7 +19,8 @@
         android:textSize="35dp"
         android:textAlignment="center"
         android:id="@+id/join_txt"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:fontFamily="@font/nixgonm"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,19 +30,22 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:text="이메일 : "
-        android:textSize="15dp"/>
+        android:textSize="15dp"
+        android:fontFamily="@font/nixgonm"/>
     <EditText
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:hint="knotknot@email.com"
-        android:id="@+id/join_email"/>
+        android:id="@+id/join_email"
+        android:fontFamily="@font/nixgonm"/>
      <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
          android:textColor="@color/colorWhite"
          android:background="@color/purple_200"
         android:text="인증 메일"
-        android:id="@+id/join_email_send"/>
+        android:id="@+id/join_email_send"
+         android:fontFamily="@font/nixgonm"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,7 +58,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="인증 번호를 입력하세요"
-            android:id="@+id/join_email_edit"/>
+            android:id="@+id/join_email_edit"
+            android:fontFamily="@font/nixgonm"/>
         <!--메일인증 클릭시 중복입니다 문구,
         인증 클릭시 틀렸습니다 문구도 여기에 띄우기로-->
         <Button
@@ -74,7 +79,8 @@
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:text="비밀번호 : "
-        android:textSize="15dp"/>
+        android:textSize="15dp"
+        android:fontFamily="@font/nixgonm"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -97,13 +103,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="비밀번호 확인 : "
-            android:textSize="15dp"/>
+            android:textSize="15dp"
+            android:fontFamily="@font/nixgonm"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint=""
             android:inputType="textPassword"
-            android:id="@+id/join_pwd_chk"/>
+            android:id="@+id/join_pwd_chk"
+            android:fontFamily="@font/nixgonm"/>
     </LinearLayout>
 
     <LinearLayout
@@ -115,12 +123,14 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="닉네임 : "
-            android:textSize="15dp"/>
+            android:textSize="15dp"
+            android:fontFamily="@font/nixgonm"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="ex) 엄마짱"
-            android:id="@+id/join_nickname"/>
+            android:id="@+id/join_nickname"
+            android:fontFamily="@font/nixgonm"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -131,18 +141,21 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="프로필 : "
-            android:textSize="15dp"/>
+            android:textSize="15dp"
+            android:fontFamily="@font/nixgonm"/>
         <EditText
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:hint=".jpg, .png"
-            android:id="@+id/join_profic"/>
+            android:id="@+id/join_profic"
+            android:fontFamily="@font/nixgonm"/>
         <!--액티비티에서 선택시 여기에 파일명 띄워줌-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="파일 선택"
-            android:id="@+id/join_profic_button"/>
+            android:id="@+id/join_profic_button"
+            android:fontFamily="@font/nixgonm"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -153,35 +166,41 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="생년월일 : "
-            android:textSize="15dp"/>
+            android:textSize="15dp"
+            android:fontFamily="@font/nixgonm"/>
         <EditText
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:hint="0000년 00월 00일"
-            android:id="@+id/join_birth"/>
+            android:id="@+id/join_birth"
+            android:fontFamily="@font/nixgonm"/>
         <!--액티비티에서 선택시 여기에 파일명 띄워줌-->
         <Button
             android:id="@+id/join_birth_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="달력" />
+            android:text="달력"
+            android:fontFamily="@font/nixgonm"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nixgonm">
 
         <TextView
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="가족코드 : "
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:fontFamily="@font/nixgonm"/>
         <EditText
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:hint="가족코드를 입력해주세요."
-            android:id="@+id/join_fam_code"/>
+            android:id="@+id/join_fam_code"
+            android:fontFamily="@font/nixgonm"/>
         <!--액티비티에서 선택시 여기에 파일명 띄워줌-->
         <Button
             android:id="@+id/join_origin_code"
@@ -189,7 +208,8 @@
             android:background="@color/purple_200"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="가입" />
+            android:text="가입"
+            android:fontFamily="@font/nixgonm"/>
         <!--작성해야만 가입 버튼 활성화 되도록함-->
 
     </LinearLayout>
@@ -198,5 +218,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="새로운 가족 만들어 가입"
-    android:layout_gravity="right"/>
+    android:layout_gravity="right"
+        android:fontFamily="@font/nixgonm"/>
 </LinearLayout>

@@ -73,42 +73,7 @@ public class DiaryAdapter extends BaseAdapter {
         dateView.setText(listViewItem.getDate());
 
         //final String text = items.get(position); -> pos
-        Button lv_edit = (Button)convertView.findViewById(R.id.lv_edit);
-        lv_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //수정버튼 클릭시
-                int diaryId = listViewItem.getPrimaryKey();
-            }
-        });
-        Button lv_delete = (Button)convertView.findViewById(R.id.lv_delete);
-        lv_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //삭제버튼 클릭시
 
-                int diaryId = listViewItem.getPrimaryKey();
-
-                retrofitInterface.deleteDiary(diaryId).enqueue((new Callback<String>() {
-                    @Override
-                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                        Log.d("retrofit", "Diary delete success");
-//                        Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT).show();
-//
-//                        Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
-//                        startActivity(i);
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                        Log.d("retrofit", "Diary delete failed");
-                    }
-                }));
-
-
-
-            }
-        });
         return convertView;
 
 //        TextView lv_description = (TextView)convertView.findViewById(R.id.lv_description);

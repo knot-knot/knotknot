@@ -2,15 +2,20 @@ package com.cau.knotknot;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +36,14 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
 
     ImageButton yesterday_btn, tomorrow_btn, calendar_btn;
     LocalDate selectedDate;
+    DrawerLayout drawer_layout;
+    LinearLayout drawer;
+    ImageButton openDrawer;
+    TextView show_fam_code;
+    ImageView drawer_prof;
+    TextView drawer_user;
+    Button logout;
+
     TextView date;
     long mNow;
     Date mDate;
@@ -44,6 +57,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         date.setText(selectedDate.format(mFormat_screen));
         getDiary(selectedDate.format(mFormat_server));
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +66,37 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
         yesterday_btn = (ImageButton)findViewById(R.id.yesterday_btn);
         tomorrow_btn = (ImageButton)findViewById(R.id.tomorrow_btn);
         calendar_btn = (ImageButton)findViewById(R.id.calendar_btn);
+
+        //drawer
+        drawer_layout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawer = (LinearLayout)findViewById(R.id.drawer);
+        openDrawer = (ImageButton)findViewById(R.id.openDrawer);
+        show_fam_code = (TextView)findViewById(R.id.show_fam_code);
+        drawer_prof = (ImageView)findViewById(R.id.drawer_prof);
+        drawer_user = (TextView)findViewById(R.id.drawer_user);
+        logout = (Button)findViewById(R.id.logout);
+
+        openDrawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer_layout.openDrawer(drawer);
+            }
+        });
+
+        drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED,drawer);
+
+        drawer_prof.setBackground(new ShapeDrawable(new OvalShape()));
+        drawer_prof.setClipToOutline(true);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //logout
+            }
+        });
+
+
+        //diary화면
         add = (ImageButton)findViewById(R.id.diary_add);
         date = (TextView)findViewById(R.id.date);
         listView = (ListView)findViewById(R.id.diary_list);
@@ -154,7 +199,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                             useremo,
                             diaries.get(i).getUserNickname(),
                             diaries.get(i).getDescription(),
-                            diaries.get(i).getCreatedAt().substring(11),    // 날짜를 제외하고 시간만 출력
+                            diaries.get(i).getCreatedAt().substring(11,16),    // 날짜를 제외하고 시간만 출력
                             diaries.get(i).getCommentsCount(),
                             diaries.get(i).getDiaryId(),
                             diaries.get(i).getWriter()
@@ -169,6 +214,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                         /* putExtra의 첫 값은 식별 태그, 뒤에는 다음 화면에 넘길 값 */
                         intent.putExtra("diaryId", diaries.get(position).getDiaryId());
                         intent.putExtra("description", diaries.get(position).getDescription());
+                        intent.putExtra("emoticon",diaries.get(position).getEmotion());
                         //추가로 넘겨야할 정보 있으면 여기 작성
                         startActivity(intent);
                     }
