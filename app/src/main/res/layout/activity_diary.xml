@@ -12,7 +12,7 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="40dp">
+        android:layout_marginBottom="20dp">
 
         <ImageButton
             android:layout_width="60dp"
@@ -20,61 +20,71 @@
             android:layout_gravity="left"
             android:src="@drawable/back5"
             android:background="#ffffff"
+            android:id="@+id/yesterday_btn"
             />
         <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/calender"
             android:background="@android:color/white"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:id="@+id/calendar_btn"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="date"
+            android:text="MM월 DD일 (Day)"
             android:fontFamily="@font/nixgonm"
             android:id="@+id/date"
-            android:textSize="32dp"/>
+            android:textSize="30dp"/>
         <ImageButton
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:background="#ffffff"
             android:src="@drawable/next5"
             android:layout_gravity="right"
+            android:id="@+id/tomorrow_btn"
             />
     </LinearLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginBottom="10dp">
-
-        <ImageView
-            android:layout_width="39dp"
-            android:layout_height="450dp"
-            android:layout_gravity="left"
-            android:src="@drawable/diary_bar2" />
-
-        <ListView
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:id="@+id/diary_list"
-            android:layout_marginRight="10dp"
-            android:layout_gravity="top"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="10dp">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="39dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:src="@drawable/diary_bar2" />
 
-    <ImageButton
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="#ffffff"
-        android:src="@drawable/add"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="20dp"
-        android:layout_gravity="right"
-        android:id="@+id/diary_add"/>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#00000000"
+                android:id="@+id/diary_list"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="top"/>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@null"
+            android:src="@drawable/add"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="right|bottom"
+            android:id="@+id/diary_add"/>
+    </FrameLayout>
 
 </LinearLayout>

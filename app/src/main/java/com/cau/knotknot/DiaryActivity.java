@@ -9,11 +9,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -26,43 +29,68 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     private RetrofitClient retrofitClient;
     private RetrofitInterface retrofitInterface;
 
+    ImageButton yesterday_btn, tomorrow_btn, calendar_btn;
+    LocalDate selectedDate;
     TextView date;
     long mNow;
     Date mDate;
-    SimpleDateFormat mFormat = new SimpleDateFormat("MM월 dd일 (E)");
-    SimpleDateFormat mFormat_server = new SimpleDateFormat("YYYY-MM-dd");
+    DateTimeFormatter mFormat_screen = DateTimeFormatter.ofPattern("M월 d일 (E)");
+    DateTimeFormatter  mFormat_server = DateTimeFormatter.ofPattern("YYYY-MM-dd");
     ImageButton add;
     ListView listView;
     DiaryAdapter  adapter;
 
-    private String getTime(){
-        mNow = System.currentTimeMillis();
-        mDate = new Date(mNow);
-        return mFormat.format(mDate);
+    private void changeDate() {
+        date.setText(selectedDate.format(mFormat_screen));
+        getDiary(selectedDate.format(mFormat_server));
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
 
-
+        yesterday_btn = (ImageButton)findViewById(R.id.yesterday_btn);
+        tomorrow_btn = (ImageButton)findViewById(R.id.tomorrow_btn);
+        calendar_btn = (ImageButton)findViewById(R.id.calendar_btn);
         add = (ImageButton)findViewById(R.id.diary_add);
         date = (TextView)findViewById(R.id.date);
-        date.setText(getTime());//수정할것!-->캘린더 선택한 날짜로 바꿔야함
         listView = (ListView)findViewById(R.id.diary_list);
 
-        mNow = System.currentTimeMillis();
-        mDate = new Date(mNow);
+        Intent intent = getIntent();
+        selectedDate = (LocalDate) intent.getSerializableExtra("selectedDate");
+        if (selectedDate == null) {
+            selectedDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        }
+        changeDate();
 
-        getDiary(mFormat_server.format(mDate));
+        yesterday_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedDate = selectedDate.minusDays(1);
+                changeDate();
+            }
+        });
+        tomorrow_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedDate = selectedDate.plusDays(1);
+                changeDate();
+            }
+        });
+
+        calendar_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),CalendarActivity.class);
+                startActivity(intent);
+            }
+        });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                     Intent intent = new Intent(getApplicationContext(),EmoActivity.class);
                     startActivity(intent);
-
             }
         });
     }
