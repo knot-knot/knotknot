@@ -29,62 +29,62 @@
     <TextView
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:text="이메일 : "
+        android:text="* 이메일 : "
         android:textSize="15dp"
         android:fontFamily="@font/nixgonm"/>
     <EditText
-        android:layout_width="220dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="knotknot@email.com"
         android:id="@+id/join_email"
         android:fontFamily="@font/nixgonm"/>
-     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         android:textColor="@color/colorWhite"
-         android:background="@color/purple_200"
-        android:text="인증 메일"
-        android:id="@+id/join_email_send"
-         android:fontFamily="@font/nixgonm"/>
+<!--     <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--         android:textColor="@color/colorWhite"-->
+<!--         android:background="@color/purple_200"-->
+<!--        android:text="인증 메일"-->
+<!--        android:id="@+id/join_email_send"-->
+<!--         android:fontFamily="@font/nixgonm"/>-->
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <View
-            android:layout_width="110dp"
-            android:layout_height="20dp"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="인증 번호를 입력하세요"
-            android:id="@+id/join_email_edit"
-            android:fontFamily="@font/nixgonm"/>
-        <!--메일인증 클릭시 중복입니다 문구,
-        인증 클릭시 틀렸습니다 문구도 여기에 띄우기로-->
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="인증"
-            android:id="@+id/join_email_permit"/>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+<!--        <View-->
+<!--            android:layout_width="110dp"-->
+<!--            android:layout_height="20dp"/>-->
+<!--        <EditText-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="인증 번호를 입력하세요"-->
+<!--            android:id="@+id/join_email_edit"-->
+<!--            android:fontFamily="@font/nixgonm"/>-->
+<!--        &lt;!&ndash;메일인증 클릭시 중복입니다 문구,-->
+<!--        인증 클릭시 틀렸습니다 문구도 여기에 띄우기로&ndash;&gt;-->
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="인증"-->
+<!--            android:id="@+id/join_email_permit"/>-->
 
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
     <TextView
-        android:layout_width="70dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:text="비밀번호 : "
+        android:text="* 비밀번호 : "
         android:textSize="15dp"
         android:fontFamily="@font/nixgonm"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint=""
+        android:hint="password"
         android:inputType="textPassword"
         android:id="@+id/join_pwd"/>
     </LinearLayout>
@@ -98,20 +98,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="비밀번호 확인 : "
+            android:text="* 비밀번호 확인 : "
             android:textSize="15dp"
             android:fontFamily="@font/nixgonm"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=""
+            android:hint="password"
             android:inputType="textPassword"
             android:id="@+id/join_pwd_chk"
-            android:fontFamily="@font/nixgonm"/>
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -122,7 +123,7 @@
         <TextView
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:text="닉네임 : "
+            android:text="* 닉네임 : "
             android:textSize="15dp"
             android:fontFamily="@font/nixgonm"/>
         <EditText
@@ -163,9 +164,9 @@
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
         <TextView
-            android:layout_width="70dp"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:text="생년월일 : "
+            android:text="* 생년월일 : "
             android:textSize="15dp"
             android:fontFamily="@font/nixgonm"/>
         <EditText
@@ -219,5 +220,6 @@
     android:layout_height="wrap_content"
     android:text="새로운 가족 만들어 가입"
     android:layout_gravity="right"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/nixgonm"/>
 </LinearLayout>

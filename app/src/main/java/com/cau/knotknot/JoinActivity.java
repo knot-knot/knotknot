@@ -75,6 +75,7 @@ public class JoinActivity extends AppCompatActivity {
         //join_email_edit =(EditText)findViewById(R.id.join_email_edit);
         join_pwd =(EditText)findViewById(R.id.join_pwd);
         join_pwd_chk =(EditText)findViewById(R.id.join_pwd_chk);
+        join_pwd_chk.setEnabled(false);
         join_nickname =(EditText)findViewById(R.id.join_nickname);
         join_profic =(EditText)findViewById(R.id.join_profic);
         join_birth =(EditText)findViewById(R.id.join_birth);
@@ -142,12 +143,6 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                chk = join_email.getText().toString().matches(pattern_email);
-                if(!chk){
-                    join_email_send.setEnabled(false);
-                }else{
-                    join_pwd_chk.setEnabled(true);
-                }
             }
 
             @Override
@@ -167,19 +162,18 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                chk = join_pwd.getText().toString().matches(pattern_pwd);
-                if(!chk){
-                    join_pwd_chk.setEnabled(false);
-                    join_pwd_rule.setTextColor(0xFF0000);
-                }else{
-                    join_pwd_chk.setEnabled(true);
-                    join_pwd_rule.setTextColor(0xC8C8C8);
-                }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                chk = join_pwd.getText().toString().matches(pattern_pwd);
+                if(!chk){
+                    join_pwd_chk.setEnabled(false);
+                    join_pwd_rule.setTextColor(getColor(R.color.design_default_color_error));
+                }else{
+                    join_pwd_chk.setEnabled(true);
+                    join_pwd_rule.setTextColor(getColor(R.color.colorLightGray));
+                }
             }
 
         });
@@ -195,17 +189,24 @@ public class JoinActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                chk = join_pwd_chk.getText().toString().equals(join_pwd.getText().toString());
-                if(!chk){
-                    join_pwd_chk.setTextColor(0xff0000);
-                }else{
-                    join_pwd_chk.setTextColor(0xc8c8c8);
-                }
+//                chk = join_pwd_chk.getText().toString().equals(join_pwd.getText().toString());
+//                if(!chk){
+//                    join_pwd_chk.setTextColor(getColor(R.color.design_default_color_error));
+//                }else{
+//                    join_pwd_chk.setTextColor(getColor(R.color.colorLightGray));
+//                }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                chk = join_pwd.getText().toString().matches(pattern_pwd);
+                if(!chk){
+                    join_pwd_chk.setEnabled(false);
+                    join_pwd_rule.setTextColor(getColor(R.color.design_default_color_error));
+                }else{
+                    join_pwd_chk.setEnabled(true);
+                    join_pwd_rule.setTextColor(getColor(R.color.colorLightGray));
+                }
             }
 
         });
@@ -219,37 +220,51 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        Boolean bJoin = join_email.getText()!=null && join_pwd.getText()!=null
+                &&join_pwd_chk.getText()!=null&&join_nickname.getText()!=null
+                &&join_birth.getText()!=null;
+
         join_origin_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //..show gif
-                viewDialog.showDialog();
+                if(bJoin&&join_fam_code.getText()!=null){
+                    //..show gif
+                    viewDialog.showDialog();
 
-                join(join_email.getText().toString(),
-                        sha256ToString(join_pwd.getText().toString()),
-                        join_nickname.getText().toString(),
-                        join_birth.getText().toString(),
-                        join_fam_code.getText().toString()
-                );
+                    join(join_email.getText().toString(),
+                            sha256ToString(join_pwd.getText().toString()),
+                            join_nickname.getText().toString(),
+                            join_birth.getText().toString(),
+                            join_fam_code.getText().toString()
+                    );
 
-                // 여기에서 빙글빙글 돌아가는 애니메이션이 뜨면 자연스러울 것 같습니다.
+                    // 여기에서 빙글빙글 돌아가는 애니메이션이 뜨면 자연스러울 것 같습니다.
+                }else {
+                    //내용이 다 있지 않은 경우
+                    Toast.makeText(getApplicationContext(), "*의 필수 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         join_new_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //..show gif
-                viewDialog.showDialog();
+                if(bJoin){
+                    //..show gif
+                    viewDialog.showDialog();
 
-                join(join_email.getText().toString(),
-                        sha256ToString(join_pwd.getText().toString()),
-                        join_nickname.getText().toString(),
-                        join_birth.getText().toString(),
-                        ""
-                );
+                    join(join_email.getText().toString(),
+                            sha256ToString(join_pwd.getText().toString()),
+                            join_nickname.getText().toString(),
+                            join_birth.getText().toString(),
+                            ""
+                    );
 
-                // 여기에서 빙글빙글 돌아가는 애니메이션이 뜨면 자연스러울 것 같습니다.
+                    // 여기에서 빙글빙글 돌아가는 애니메이션이 뜨면 자연스러울 것 같습니다.
+                    }else {
+                    //내용이 다 있지 않은 경우
+                    Toast.makeText(getApplicationContext(), "*의 필수 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
