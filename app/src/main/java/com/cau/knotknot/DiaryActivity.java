@@ -3,6 +3,7 @@ package com.cau.knotknot;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -146,6 +147,18 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
             public void onClick(View view) {
                     Intent intent = new Intent(getApplicationContext(),EmoActivity.class);
                     startActivity(intent);
+            }
+        });
+
+        SwipeRefreshLayout refresh_layout = findViewById(R.id.refresh_layout);
+        refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                /* swipe 시 진행할 동작 */
+                getDiary(selectedDate.format(mFormat_server));
+
+                /* 업데이트가 끝났음을 알림 */
+                refresh_layout.setRefreshing(false);
             }
         });
     }

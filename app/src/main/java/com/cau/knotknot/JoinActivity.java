@@ -237,8 +237,6 @@ public class JoinActivity extends AppCompatActivity {
                             join_birth.getText().toString(),
                             join_fam_code.getText().toString()
                     );
-
-                    // 여기에서 빙글빙글 돌아가는 애니메이션이 뜨면 자연스러울 것 같습니다.
                 }else {
                     //내용이 다 있지 않은 경우
                     Toast.makeText(getApplicationContext(), "*의 필수 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
@@ -259,9 +257,7 @@ public class JoinActivity extends AppCompatActivity {
                             join_birth.getText().toString(),
                             ""
                     );
-
-                    // 여기에서 빙글빙글 돌아가는 애니메이션이 뜨면 자연스러울 것 같습니다.
-                    }else {
+                 }else {
                     //내용이 다 있지 않은 경우
                     Toast.makeText(getApplicationContext(), "*의 필수 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
