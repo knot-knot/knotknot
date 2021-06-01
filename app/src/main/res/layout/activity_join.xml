@@ -20,7 +20,8 @@
         android:textAlignment="center"
         android:id="@+id/join_txt"
         android:textStyle="bold"
-        android:fontFamily="@font/nixgonm"/>
+        android:fontFamily="@font/nixgonm"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +38,8 @@
         android:layout_height="wrap_content"
         android:hint="knotknot@email.com"
         android:id="@+id/join_email"
-        android:fontFamily="@font/nixgonm"/>
+        android:fontFamily="@font/nixgonm"
+        android:backgroundTint="@color/purple_200"/>
 <!--     <Button-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
@@ -86,7 +88,9 @@
         android:layout_height="wrap_content"
         android:hint="password"
         android:inputType="textPassword"
-        android:id="@+id/join_pwd"/>
+        android:id="@+id/join_pwd"
+        android:backgroundTint="@color/purple_200"
+        />
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -112,6 +116,7 @@
             android:hint="password"
             android:inputType="textPassword"
             android:id="@+id/join_pwd_chk"
+            android:backgroundTint="@color/purple_200"
             />
     </LinearLayout>
 
@@ -131,7 +136,8 @@
             android:layout_height="wrap_content"
             android:hint="ex) 엄마짱"
             android:id="@+id/join_nickname"
-            android:fontFamily="@font/nixgonm"/>
+            android:fontFamily="@font/nixgonm"
+            android:backgroundTint="@color/purple_200"/>
     </LinearLayout>
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -168,13 +174,15 @@
             android:layout_height="wrap_content"
             android:text="생년월일 : "
             android:textSize="15dp"
-            android:fontFamily="@font/nixgonm"/>
+            android:fontFamily="@font/nixgonm"
+            />
         <EditText
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:hint="0000년 00월 00일"
             android:id="@+id/join_birth"
-            android:fontFamily="@font/nixgonm"/>
+            android:fontFamily="@font/nixgonm"
+            android:backgroundTint="@color/purple_200"/>
         <!--액티비티에서 선택시 여기에 파일명 띄워줌-->
         <Button
             android:id="@+id/join_birth_calendar"
@@ -201,7 +209,8 @@
             android:layout_height="wrap_content"
             android:hint="가족코드를 입력해주세요."
             android:id="@+id/join_fam_code"
-            android:fontFamily="@font/nixgonm"/>
+            android:fontFamily="@font/nixgonm"
+            android:backgroundTint="@color/purple_200"/>
         <!--액티비티에서 선택시 여기에 파일명 띄워줌-->
         <Button
             android:id="@+id/join_origin_code"
