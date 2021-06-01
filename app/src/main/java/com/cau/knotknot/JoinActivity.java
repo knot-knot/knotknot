@@ -77,7 +77,7 @@ public class JoinActivity extends AppCompatActivity {
         join_pwd_chk =(EditText)findViewById(R.id.join_pwd_chk);
         join_pwd_chk.setEnabled(false);
         join_nickname =(EditText)findViewById(R.id.join_nickname);
-        //join_profic =(EditText)findViewById(R.id.join_profic);
+
         join_birth =(EditText)findViewById(R.id.join_birth);
         join_fam_code =(EditText)findViewById(R.id.join_fam_code);
 
