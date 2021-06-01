@@ -88,7 +88,7 @@ public class WriteActivity extends AppCompatActivity {
                 Glide.with(this).load(R.drawable.worry).into(et_back);
                 break;
             case 3:
-                emo=getResources().getDrawable(R.drawable.emo3);
+                emo=getResources().getDrawable(R.drawable.www);
                 Glide.with(this).load(R.drawable.want).into(et_back);
                 break;
             case 4:
@@ -106,6 +106,7 @@ public class WriteActivity extends AppCompatActivity {
                 break;
             case 8:
                 emo=getResources().getDrawable(R.drawable.emo8);
+                Glide.with(this).load(R.drawable.praise).into(et_back);
         }
         write_emo.setImageDrawable(emo);
 

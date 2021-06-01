@@ -103,6 +103,7 @@ public class ReplyActivity extends AppCompatActivity {
             case 7:
                 break;
             case 8:
+                Glide.with(this).load(R.drawable.praise).into(tv_back);
                 break;
             default:
         }
