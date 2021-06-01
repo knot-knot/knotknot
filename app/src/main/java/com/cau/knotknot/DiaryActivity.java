@@ -46,8 +46,6 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     Button logout;
 
     TextView date;
-    long mNow;
-    Date mDate;
     DateTimeFormatter mFormat_screen = DateTimeFormatter.ofPattern("M월 d일 (E)");
     DateTimeFormatter  mFormat_server = DateTimeFormatter.ofPattern("YYYY-MM-dd");
     ImageButton add;
