@@ -32,8 +32,8 @@ public class ReplyAdapter extends BaseAdapter {
     private String user_email;
 
     // 생성자
-    public ReplyAdapter(String user_email) {
-        this.user_email = user_email;
+    public ReplyAdapter() {
+
     }
 
     // Adapter에 사용되는 데이터의 개수를 리턴. : 필수 구현
@@ -70,7 +70,8 @@ public class ReplyAdapter extends BaseAdapter {
         Button rl_delete = (Button)convertView.findViewById(R.id.rl_delete);
 
         // 댓글 작성자 이메일 주소 == 앱 사용자의 이메일 주소 일 때 댓글삭제 버튼 보이기
-        if (listViewItem.getEmail().equals(user_email)){
+        SharedPreferences pref = context.getSharedPreferences("user_pref", Context.MODE_PRIVATE);
+        if (listViewItem.getEmail().equals(pref.getString("email","이메일"))){
             rl_delete.setVisibility(View.VISIBLE);
         }
 
@@ -88,11 +89,7 @@ public class ReplyAdapter extends BaseAdapter {
                         replyItemList.remove(position);
                         notifyDataSetChanged();
 
-                        Context context = parent.getContext();
                         Toast.makeText(context,"삭제되었습니다.",Toast.LENGTH_SHORT).show();
-//
-//                        Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
-//                        startActivity(i);
                     }
 
                     @Override

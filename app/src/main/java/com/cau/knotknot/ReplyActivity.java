@@ -14,6 +14,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,10 +50,6 @@ public class ReplyActivity extends AppCompatActivity {
     ReplyAdapter adapter;
     Boolean newDiary;
 
-    private String appUsersEmail() {
-        SharedPreferences pref = getSharedPreferences("user_pref", MODE_PRIVATE);
-        return pref.getString("email","이메일");
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +71,8 @@ public class ReplyActivity extends AppCompatActivity {
         reply_add_btn =(Button)findViewById(R.id.reply_add_btn);
 
         // 일기를 수정 삭제할 권한이 있으면 버튼 보이기
-        if (diary_writer.equals(appUsersEmail())){
+        SharedPreferences pref = getSharedPreferences("user_pref", MODE_PRIVATE);
+        if (diary_writer.equals(pref.getString("email","이메일"))){
             reply_diary_modify.setVisibility(View.VISIBLE);
             reply_diary_delete.setVisibility(View.VISIBLE);
         }
@@ -191,8 +189,8 @@ public class ReplyActivity extends AppCompatActivity {
                 /* comments 리스트를 ListView 로 표현하는 코드 */
                 //////////////////////////////////////////////
 
-                //adapter생성, 앱 사용자의 이메일 주소도 전달함
-                adapter = new ReplyAdapter(appUsersEmail());
+                //adapter생성
+                adapter = new ReplyAdapter();
 
                 int l=comments.size();
                 for(int i=0;i<l;i++){
@@ -204,6 +202,12 @@ public class ReplyActivity extends AppCompatActivity {
                             comments.get(i).getWriter());
                 }
                 reply.setAdapter(adapter);
+
+                if(l == 0) {
+                    reply.setVisibility(View.GONE);
+                }else{
+                    reply.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

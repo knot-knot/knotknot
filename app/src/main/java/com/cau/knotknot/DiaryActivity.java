@@ -59,6 +59,13 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        selectedDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
+        getDiary(selectedDate.format(mFormat_server));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary);
