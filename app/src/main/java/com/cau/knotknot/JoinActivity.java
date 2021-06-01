@@ -77,13 +77,13 @@ public class JoinActivity extends AppCompatActivity {
         join_pwd_chk =(EditText)findViewById(R.id.join_pwd_chk);
         join_pwd_chk.setEnabled(false);
         join_nickname =(EditText)findViewById(R.id.join_nickname);
-        join_profic =(EditText)findViewById(R.id.join_profic);
+        //join_profic =(EditText)findViewById(R.id.join_profic);
         join_birth =(EditText)findViewById(R.id.join_birth);
         join_fam_code =(EditText)findViewById(R.id.join_fam_code);
 
         //join_email_send = (Button)findViewById(R.id.join_email_send);
         //join_email_permit = (Button)findViewById(R.id.join_email_permit);
-        join_profic_button = (Button)findViewById(R.id.join_profic_button);
+        //join_profic_button = (Button)findViewById(R.id.join_profic_button);
         join_birth_calendar = (Button)findViewById(R.id.join_birth_calendar);
         join_origin_code = (Button)findViewById(R.id.join_origin_code);
         join_new_code = (Button)findViewById(R.id.join_new_code);
@@ -124,14 +124,14 @@ public class JoinActivity extends AppCompatActivity {
 //            }
 //        });
 
-        join_profic_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent,10);
-            }
-        });
+//        join_profic_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.setType("image/*");
+//                startActivityForResult(intent,10);
+//            }
+//        });
 
         join_email.addTextChangedListener(new TextWatcher() {
             Boolean chk;
@@ -221,8 +221,7 @@ public class JoinActivity extends AppCompatActivity {
         });
 
         Boolean bJoin = join_email.getText()!=null && join_pwd.getText()!=null
-                &&join_pwd_chk.getText()!=null&&join_nickname.getText()!=null
-                &&join_birth.getText()!=null;
+                &&join_pwd_chk.getText()!=null&&join_nickname.getText()!=null;
 
         join_origin_code.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,7 +238,7 @@ public class JoinActivity extends AppCompatActivity {
                     );
 
                     // 여기에서 빙글빙글 돌아가는 애니메이션이 뜨면 자연스러울 것 같습니다.
-                }else {
+                }else{
                     //내용이 다 있지 않은 경우
                     Toast.makeText(getApplicationContext(), "*의 필수 내용을 모두 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
