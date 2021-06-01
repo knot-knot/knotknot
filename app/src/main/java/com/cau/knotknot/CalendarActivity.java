@@ -41,8 +41,9 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     {
         monthYearText.setText(monthYearFromDate(selectedDate));
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
+        ArrayList<Boolean> stamp = stampArray(selectedDate);
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
+        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, stamp, this);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
@@ -70,6 +71,43 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
             }
         }
         return  daysInMonthArray;
+    }
+
+    private ArrayList<Boolean> stampArray(LocalDate date)
+    {
+        ArrayList<Boolean> stamp = new ArrayList<>();
+        YearMonth yearMonth = YearMonth.from(date);
+
+        int daysInMonth = yearMonth.lengthOfMonth();
+
+
+        LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
+        int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
+
+        int day;
+
+        for(int i = 1; i <= 42; i++)
+        {
+            if(i <= dayOfWeek || i > daysInMonth + dayOfWeek)
+            {
+                stamp.add(false);
+            }
+            else
+            {
+                day = i - dayOfWeek;
+                if ((yearMonth.getMonthValue() == 5) && (day == 29 || day == 30 || day == 31)) {
+                    stamp.add(true);
+                }
+                else if ((yearMonth.getMonthValue() == 6) && (day == 1 || day == 2)) {
+                    stamp.add(true);
+                }
+                else {
+                    stamp.add(false);
+                }
+
+            }
+        }
+        return  stamp;
     }
 
     private String monthYearFromDate(LocalDate date)
