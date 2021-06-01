@@ -12,11 +12,13 @@ import java.util.ArrayList;
 class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 {
     private final ArrayList<String> daysOfMonth;
+    private final ArrayList<Boolean> stamp;
     private final OnItemListener onItemListener;
 
-    public CalendarAdapter(ArrayList<String> daysOfMonth, OnItemListener onItemListener)
+    public CalendarAdapter(ArrayList<String> daysOfMonth, ArrayList<Boolean> stamp, OnItemListener onItemListener)
     {
         this.daysOfMonth = daysOfMonth;
+        this.stamp = stamp;
         this.onItemListener = onItemListener;
     }
 
@@ -37,6 +39,9 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
         holder.dayOfMonth.setText(daysOfMonth.get(position));
         // if 해당 날짜가 도장 있는 날이라면
         // holder.stamp.setVisibility(View.VISIBLE);
+        if(stamp.get(position)){
+            holder.stamp.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

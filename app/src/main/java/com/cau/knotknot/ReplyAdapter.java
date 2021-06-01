@@ -1,6 +1,7 @@
 package com.cau.knotknot;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
 
@@ -78,29 +80,38 @@ public class ReplyAdapter extends BaseAdapter {
         rl_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //삭제버튼 클릭시
-                int commentsId = listViewItem.getPrimaryKey();
+                AlertDialog dialog = new AlertDialog.Builder(context)
+                        .setMessage("이 코멘트를 삭제할까요?")
+                        .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which){
+                                //삭제버튼 클릭시
+                                int commentsId = listViewItem.getPrimaryKey();
 
-                retrofitInterface.deleteComments(commentsId).enqueue((new Callback<String>() {
-                    @Override
-                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                        Log.d("retrofit", "Comment delete success");
+                                retrofitInterface.deleteComments(commentsId).enqueue((new Callback<String>() {
+                                    @Override
+                                    public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                                        Log.d("retrofit", "Comment delete success");
 
-                        replyItemList.remove(position);
-                        notifyDataSetChanged();
+                                        replyItemList.remove(position);
+                                        notifyDataSetChanged();
 
-                        Toast.makeText(context,"삭제되었습니다.",Toast.LENGTH_SHORT).show();
-                    }
+                                        Toast.makeText(context,"삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                                    }
 
-                    @Override
-                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                        Log.d("retrofit", "Comment delete failed");
-                    }
-                }
-                ));
-
-
-
+                                    @Override
+                                    public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                                        Log.d("retrofit", "Comment delete failed");
+                                    }
+                                }
+                                ));
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which){
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
             }
         });
         return convertView;
