@@ -1,6 +1,7 @@
 package com.cau.knotknot;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -26,9 +29,11 @@ public class ReplyAdapter extends BaseAdapter {
     private RetrofitClient retrofitClient = RetrofitClient.getInstance();
     private RetrofitInterface retrofitInterface = RetrofitClient.getRetrofitInterface();
 
-    // ListViewAdapter의 생성자
-    public ReplyAdapter() {
+    private String user_email;
 
+    // 생성자
+    public ReplyAdapter(String user_email) {
+        this.user_email = user_email;
     }
 
     // Adapter에 사용되는 데이터의 개수를 리턴. : 필수 구현
@@ -63,18 +68,28 @@ public class ReplyAdapter extends BaseAdapter {
 
         //final String text = items.get(position); -> pos
         Button rl_delete = (Button)convertView.findViewById(R.id.rl_delete);
+
+        // 댓글 작성자 이메일 주소 == 앱 사용자의 이메일 주소 일 때 댓글삭제 버튼 보이기
+        if (listViewItem.getEmail().equals(user_email)){
+            rl_delete.setVisibility(View.VISIBLE);
+        }
+
         rl_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //삭제버튼 클릭시
+                int commentsId = listViewItem.getPrimaryKey();
 
-                /*int diaryId = listViewItem.getDiaryId();
-
-                retrofitInterface.deleteDiary(diaryId).enqueue((new Callback<String>() {
+                retrofitInterface.deleteComments(commentsId).enqueue((new Callback<String>() {
                     @Override
                     public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                        Log.d("retrofit", "Diary delete success");
-//                        Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT).show();
+                        Log.d("retrofit", "Comment delete success");
+
+                        replyItemList.remove(position);
+                        notifyDataSetChanged();
+
+                        Context context = parent.getContext();
+                        Toast.makeText(context,"삭제되었습니다.",Toast.LENGTH_SHORT).show();
 //
 //                        Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
 //                        startActivity(i);
@@ -82,10 +97,10 @@ public class ReplyAdapter extends BaseAdapter {
 
                     @Override
                     public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                        Log.d("retrofit", "Diary delete failed");
+                        Log.d("retrofit", "Comment delete failed");
                     }
                 }
-                ));*/
+                ));
 
 
 

@@ -1,10 +1,14 @@
 package com.cau.knotknot;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
@@ -45,6 +49,11 @@ public class ReplyActivity extends AppCompatActivity {
     ReplyAdapter adapter;
     Boolean newDiary;
 
+    private String appUsersEmail() {
+        SharedPreferences pref = getSharedPreferences("user_pref", MODE_PRIVATE);
+        return pref.getString("email","이메일");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +73,10 @@ public class ReplyActivity extends AppCompatActivity {
         reply_add =(EditText)findViewById(R.id.reply_add);
         reply_add_btn =(Button)findViewById(R.id.reply_add_btn);
 
-        SharedPreferences pref = getSharedPreferences("user_pref", MODE_PRIVATE);
-        if (diary_writer.equals(pref.getString("email","이메일"))){
+        // 일기를 수정 삭제할 권한이 있으면 버튼 보이기
+        if (diary_writer.equals(appUsersEmail())){
             reply_diary_modify.setVisibility(View.VISIBLE);
             reply_diary_delete.setVisibility(View.VISIBLE);
-            reply_diary_modify.setClickable(false);
-            reply_diary_delete.setClickable(false);
         }
 
         //가져온 정보 set()
@@ -109,14 +116,9 @@ public class ReplyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //일기 id를 가지고
                 //일기 수정(작성창) intent 띄우기
-                long now = System.currentTimeMillis();
-                Date mDate = new Date(now);
-                SimpleDateFormat shortDate = new SimpleDateFormat("yyyy-MM-dd");
-                String emoDate = shortDate.format(mDate);
 
                 Intent intent = new Intent(getApplicationContext(),WriteActivity.class);
                 intent.putExtra("emoticon",emoticon);
-                intent.putExtra("emoDate",emoDate);
                 intent.putExtra("newDiary",newDiary);
                 intent.putExtra("diaryId",diaryId);
                 intent.putExtra("description",description);
@@ -129,6 +131,30 @@ public class ReplyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //일기 id를 가지고 일기 삭제
+                AlertDialog dialog = new AlertDialog.Builder(ReplyActivity.this)
+                        .setMessage("이 일기를 삭제할까요?")
+                        .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which){
+                                deleteDiary();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which){
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+                dialog.setOnShowListener( new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        TextView msg = (TextView) dialog.findViewById(android.R.id.message);
+                        Typeface face = Typeface.createFromAsset(getAssets(),"font/nixgonm.ttf");
+                        msg.setTypeface(face);
+                        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED);
+                        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTypeface(face);
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTypeface(face);
+                    }
+                });
             }
         });
 
@@ -165,8 +191,8 @@ public class ReplyActivity extends AppCompatActivity {
                 /* comments 리스트를 ListView 로 표현하는 코드 */
                 //////////////////////////////////////////////
 
-                //adapter생성
-                adapter = new ReplyAdapter();
+                //adapter생성, 앱 사용자의 이메일 주소도 전달함
+                adapter = new ReplyAdapter(appUsersEmail());
 
                 int l=comments.size();
                 for(int i=0;i<l;i++){
@@ -211,6 +237,23 @@ public class ReplyActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"네트워크가 원활하지 않습니다.",Toast.LENGTH_SHORT).show();
 
                 Log.d("retrofit", "Comments post failed");
+            }
+        }));
+    }
+
+    private void deleteDiary() {
+        retrofitInterface.deleteDiary(diaryId).enqueue((new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.d("retrofit", "Diary delete success");
+                Toast.makeText(getApplicationContext(),"삭제되었습니다.",Toast.LENGTH_SHORT).show();
+
+                finish();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.d("retrofit", "Diary delete failed");
             }
         }));
     }
