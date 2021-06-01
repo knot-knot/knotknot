@@ -65,7 +65,8 @@
             android:text="MM월 DD일 (Day)"
             android:fontFamily="@font/nixgonm"
             android:id="@+id/date"
-            android:textSize="30dp"/>
+            android:textSize="30dp"
+            android:textColor="#301E26"/>
         <ImageButton
             android:layout_width="60dp"
             android:layout_height="60dp"
