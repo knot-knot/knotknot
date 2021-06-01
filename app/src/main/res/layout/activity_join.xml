@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="60dp"
         android:text="회원가입"
         android:textSize="35dp"
         android:textAlignment="center"
@@ -133,31 +133,31 @@
             android:id="@+id/join_nickname"
             android:fontFamily="@font/nixgonm"/>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp">
-        <TextView
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:text="프로필 : "
-            android:textSize="15dp"
-            android:fontFamily="@font/nixgonm"/>
-        <EditText
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:hint=".jpg, .png"
-            android:id="@+id/join_profic"
-            android:fontFamily="@font/nixgonm"/>
-        <!--액티비티에서 선택시 여기에 파일명 띄워줌-->
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="파일 선택"
-            android:id="@+id/join_profic_button"
-            android:fontFamily="@font/nixgonm"/>
-    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="20dp">-->
+<!--        <TextView-->
+<!--            android:layout_width="70dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="프로필 : "-->
+<!--            android:textSize="15dp"-->
+<!--            android:fontFamily="@font/nixgonm"/>-->
+<!--        <EditText-->
+<!--            android:layout_width="220dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint=".jpg, .png"-->
+<!--            android:id="@+id/join_profic"-->
+<!--            android:fontFamily="@font/nixgonm"/>-->
+<!--        &lt;!&ndash;액티비티에서 선택시 여기에 파일명 띄워줌&ndash;&gt;-->
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="파일 선택"-->
+<!--            android:id="@+id/join_profic_button"-->
+<!--            android:fontFamily="@font/nixgonm"/>-->
+<!--    </LinearLayout>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
         <TextView
             android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:text="* 생년월일 : "
+            android:text="생년월일 : "
             android:textSize="15dp"
             android:fontFamily="@font/nixgonm"/>
         <EditText

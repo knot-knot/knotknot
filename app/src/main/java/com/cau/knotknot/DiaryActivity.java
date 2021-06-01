@@ -208,7 +208,7 @@ public class DiaryActivity extends AppCompatActivity implements View.OnClickList
                             emo=getResources().getDrawable(R.drawable.emo2);
                             break;
                         case 3:
-                            emo=getResources().getDrawable(R.drawable.emo3);
+                            emo=getResources().getDrawable(R.drawable.www);
                             break;
                         case 4:
                             emo=getResources().getDrawable(R.drawable.emo4);

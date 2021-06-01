@@ -18,14 +18,15 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/back5"
+            android:background="@drawable/back"
             android:textStyle="bold"
             android:onClick="previousMonthAction"
+            android:layout_marginLeft="20dp"
             android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/monthYearTV"
-            android:layout_width="0dp"
+            android:layout_width="140dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
             android:text="May 2021"
@@ -38,9 +39,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/next5"
+            android:background="@drawable/next"
             android:textStyle="bold"
             android:onClick="nextMonthAction"
+            android:layout_marginRight="20dp"
             android:textSize="20sp"/>
 
     </LinearLayout>

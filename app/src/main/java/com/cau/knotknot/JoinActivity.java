@@ -77,13 +77,13 @@ public class JoinActivity extends AppCompatActivity {
         join_pwd_chk =(EditText)findViewById(R.id.join_pwd_chk);
         join_pwd_chk.setEnabled(false);
         join_nickname =(EditText)findViewById(R.id.join_nickname);
-        join_profic =(EditText)findViewById(R.id.join_profic);
+
         join_birth =(EditText)findViewById(R.id.join_birth);
         join_fam_code =(EditText)findViewById(R.id.join_fam_code);
 
         //join_email_send = (Button)findViewById(R.id.join_email_send);
         //join_email_permit = (Button)findViewById(R.id.join_email_permit);
-        join_profic_button = (Button)findViewById(R.id.join_profic_button);
+        //join_profic_button = (Button)findViewById(R.id.join_profic_button);
         join_birth_calendar = (Button)findViewById(R.id.join_birth_calendar);
         join_origin_code = (Button)findViewById(R.id.join_origin_code);
         join_new_code = (Button)findViewById(R.id.join_new_code);
@@ -124,14 +124,14 @@ public class JoinActivity extends AppCompatActivity {
 //            }
 //        });
 
-        join_profic_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent,10);
-            }
-        });
+//        join_profic_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.setType("image/*");
+//                startActivityForResult(intent,10);
+//            }
+//        });
 
         join_email.addTextChangedListener(new TextWatcher() {
             Boolean chk;
