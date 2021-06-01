@@ -35,7 +35,9 @@
         android:hint="무슨 일이 있었나요?"
         android:gravity="top"
         android:padding="20dp"
-        android:id="@+id/et"/>
+        android:id="@+id/et"
+        android:lineSpacingExtra="4dp"
+        android:scrollbars = "vertical"/>
     <!--일기 작성-->
 </RelativeLayout>
     <Button

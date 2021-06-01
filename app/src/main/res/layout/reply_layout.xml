@@ -59,7 +59,9 @@
                 android:padding="15dp"
                 android:text="SAMPLE"
                 android:textColor="#666666"
-                android:textSize="18dp" /><!--글씨 크기 작게하고-->
+                android:textSize="18dp"
+                android:lineSpacingExtra="4dp"
+                android:scrollbars = "vertical"/><!--글씨 크기 작게하고-->
 
         </LinearLayout>
 
