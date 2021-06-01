@@ -29,9 +29,6 @@ public class DiaryAdapter extends BaseAdapter {
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList
     private ArrayList<ListViewItem> listViewItemList = new ArrayList<ListViewItem>() ;
 
-    private RetrofitClient retrofitClient = RetrofitClient.getInstance();
-    private RetrofitInterface retrofitInterface = RetrofitClient.getRetrofitInterface();
-
     // ListViewAdapter의 생성자
     public DiaryAdapter() {
 

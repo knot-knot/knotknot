@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class EmoActivity extends AppCompatActivity {
@@ -64,10 +67,9 @@ public class EmoActivity extends AppCompatActivity {
                         break;
                 }
 
-                long now = System.currentTimeMillis();
-                Date mDate = new Date(now);
-                SimpleDateFormat shortDate = new SimpleDateFormat("yyyy-MM-dd");
-                String emoDate = shortDate.format(mDate);
+                LocalDate now = LocalDate.now(ZoneId.of("Asia/Seoul"));
+                DateTimeFormatter shortDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String emoDate = now.format(shortDate);
 
                 Intent intent = new Intent(getApplicationContext(),WriteActivity.class);
                 intent.putExtra("emoticon",emoticon);

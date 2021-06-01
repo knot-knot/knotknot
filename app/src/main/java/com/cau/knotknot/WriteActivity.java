@@ -64,6 +64,7 @@ public class WriteActivity extends AppCompatActivity {
         int emoticon = intent.getIntExtra("emoticon",0);
         String emoDate = intent.getStringExtra("emoDate");
         Boolean newDiary = intent.getBooleanExtra("newDiary",true);
+        int diaryId = intent.getIntExtra("diaryId",0);
         String exDiary  ="";
 
 
@@ -123,7 +124,7 @@ public class WriteActivity extends AppCompatActivity {
 
                 createdAt = now.format(shortDate);
 
-                if(emoDate.equals(createdAt)) {
+                if(!newDiary || emoDate.equals(createdAt)) {
                     createdAt = now.format(longDate);
                 }else{
                     createdAt = emoDate + " 23:59:59";
@@ -135,7 +136,7 @@ public class WriteActivity extends AppCompatActivity {
                 if(newDiary) {
                     createDiary(description, emoticon, createdAt);
                 }else{
-                    //updateDairy(description, emoticon ...
+                    updateDiary(diaryId, description, emoticon, createdAt);
                 }
             }
         });
@@ -166,6 +167,33 @@ public class WriteActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.d("retrofit", "Diary post failed");
+            }
+        }));
+    }
+    private void updateDiary(int diaryId, String description, int emotion, String updatedAt) {
+        retrofitClient = RetrofitClient.getInstance();
+        retrofitInterface = RetrofitClient.getRetrofitInterface();
+
+        // 일기 데이터 Body
+        Map<String, Object> map = new HashMap<>();
+        map.put("description", description);
+        map.put("emotion", emotion);
+        map.put("updatedAt", updatedAt);
+
+        retrofitInterface.updateDiary(diaryId, map).enqueue((new Callback<String>() {
+            @Override
+            public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
+                Log.d("retrofit", "Diary put success");
+                Toast.makeText(getApplicationContext(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
+                startActivity(i);
+                viewDialog.hideDialog();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
+                Log.d("retrofit", "Diary put failed");
             }
         }));
     }
