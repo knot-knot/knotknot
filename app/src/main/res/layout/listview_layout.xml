@@ -59,7 +59,8 @@
             android:textSize="18dp"
             android:textColor="#666666"
             android:layout_weight="1"
-            android:padding="15dp" /><!--글씨 크기 작게하고-->
+            android:padding="15dp"
+            android:lineSpacingExtra="4dp"/><!--글씨 크기 작게하고-->
 
     </LinearLayout>
         <LinearLayout

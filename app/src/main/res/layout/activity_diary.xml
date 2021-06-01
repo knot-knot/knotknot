@@ -53,8 +53,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/calender"
-            android:background="@android:color/white"
+            android:src="@drawable/cal2"
+            android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             android:id="@+id/calendar_btn"/>
 

@@ -26,6 +26,8 @@
             android:padding="20dp"
             android:fontFamily="@font/nixgonm"
             android:id="@+id/reply_description"
+            android:lineSpacingExtra="4dp"
+            android:scrollbars = "vertical"
             android:background="@drawable/reply_diary_layout"/>
         <!--일기 작성-->
     </RelativeLayout>
