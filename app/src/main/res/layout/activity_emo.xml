@@ -57,12 +57,11 @@
 
             <ImageButton
                 android:id="@+id/emo3"
-                android:padding="9dp"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@android:color/transparent"
                 android:scaleType="centerCrop"
-                android:src="@drawable/emo3" />
+                android:src="@drawable/www" />
 
         </LinearLayout>
 
