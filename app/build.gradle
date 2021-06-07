@@ -20,6 +20,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each {
+                    output ->
+                        def date = new Date();
+                        def formattedDate = date.format('yyyyMMdd')
+                        def file = output.outputFile
+                        output.outputFileName = "knotknot.apk"
+                }
+            }
         }
     }
     compileOptions {
