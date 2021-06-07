@@ -170,9 +170,6 @@ public class ReplyActivity extends AppCompatActivity {
 
     //getReply()
     private void getReply(){
-        retrofitClient = RetrofitClient.getInstance();
-        retrofitInterface = RetrofitClient.getRetrofitInterface();
-
         retrofitInterface.getComments(diaryId).enqueue(new Callback<List<Comments>>() {
             @Override
             public void onResponse(@NonNull Call<List<Comments>> call, @NonNull Response<List<Comments>> response) {

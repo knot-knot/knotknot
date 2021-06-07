@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -280,12 +281,19 @@ public class JoinActivity extends AppCompatActivity {
         retrofitInterface.join(map).enqueue((new Callback<String>() {
             @Override
             public void onResponse(@NonNull Call<String> call, @NonNull Response<String> response) {
-                String message = response.body();
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-
                 if(response.isSuccessful()) {
+                    String message = response.body();
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
                     Intent i = new Intent(getApplicationContext(),LoginActivity.class);
                     startActivity(i);
+                } else {
+                    try {
+                        String message = response.errorBody().string();
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 viewDialog.hideDialog();
             }
@@ -294,7 +302,8 @@ public class JoinActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Toast.makeText(getApplicationContext(),"오류가 발생했습니다.",Toast.LENGTH_SHORT).show();
 
-                Log.d("retrofit", "Login failed");
+                Log.d("retrofit", "Join failed");
+                viewDialog.hideDialog();
             }
         }));
     }
