@@ -12,14 +12,17 @@ import java.util.ArrayList;
 class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 {
     private final ArrayList<String> daysOfMonth;
-    private final ArrayList<Boolean> stamp;
     private final OnItemListener onItemListener;
+    private ArrayList<Boolean> stamp;
 
-    public CalendarAdapter(ArrayList<String> daysOfMonth, ArrayList<Boolean> stamp, OnItemListener onItemListener)
+    public CalendarAdapter(ArrayList<String> daysOfMonth, OnItemListener onItemListener)
     {
         this.daysOfMonth = daysOfMonth;
-        this.stamp = stamp;
         this.onItemListener = onItemListener;
+    }
+
+    public void setStamps(ArrayList<Boolean> stamp) {
+        this.stamp = stamp;
     }
 
     @NonNull

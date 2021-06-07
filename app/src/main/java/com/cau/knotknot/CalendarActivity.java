@@ -1,11 +1,13 @@
 package com.cau.knotknot;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,12 +16,20 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CalendarActivity extends AppCompatActivity implements CalendarAdapter.OnItemListener
 {
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
     private LocalDate selectedDate;
+
+    private RetrofitClient retrofitClient = RetrofitClient.getInstance();
+    private RetrofitInterface retrofitInterface = RetrofitClient.getRetrofitInterface();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,12 +51,30 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     {
         monthYearText.setText(monthYearFromDate(selectedDate));
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
-        ArrayList<Boolean> stamp = stampArray(selectedDate);
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, stamp, this);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
-        calendarRecyclerView.setLayoutManager(layoutManager);
-        calendarRecyclerView.setAdapter(calendarAdapter);
+        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
+
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy-MM");
+        retrofitInterface.getCalendar(selectedDate.format(f)).enqueue(new Callback<List<Calendar>>() {
+            @Override
+            public void onResponse(Call<List<Calendar>> call, Response<List<Calendar>> response) {
+
+                List<Calendar> calendar = response.body();
+                ArrayList<Boolean> stamp = stampArray(selectedDate, calendar);
+
+                calendarAdapter.setStamps(stamp);
+                RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
+                calendarRecyclerView.setLayoutManager(layoutManager);
+                calendarRecyclerView.setAdapter(calendarAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Calendar>> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"네트워크가 원활하지 않습니다.",Toast.LENGTH_SHORT).show();
+
+                Log.d("retrofit", "calendar fetch failed");
+            }
+        });
     }
 
     private ArrayList<String> daysInMonthArray(LocalDate date)
@@ -73,41 +101,47 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         return  daysInMonthArray;
     }
 
-    private ArrayList<Boolean> stampArray(LocalDate date)
+    private ArrayList<Boolean> stampArray(LocalDate date, List<Calendar> calendar)
     {
         ArrayList<Boolean> stamp = new ArrayList<>();
         YearMonth yearMonth = YearMonth.from(date);
 
         int daysInMonth = yearMonth.lengthOfMonth();
 
-
         LocalDate firstOfMonth = selectedDate.withDayOfMonth(1);
         int dayOfWeek = firstOfMonth.getDayOfWeek().getValue();
 
-        int day;
-
+        int position = 0;
         for(int i = 1; i <= 42; i++)
         {
-            if(i <= dayOfWeek || i > daysInMonth + dayOfWeek)
+            if(position == calendar.size() || i <= dayOfWeek || i > daysInMonth + dayOfWeek)
             {
                 stamp.add(false);
             }
             else
             {
-                day = i - dayOfWeek;
-                if ((yearMonth.getMonthValue() == 5) && (day == 29 || day == 30 || day == 31)) {
-                    stamp.add(true);
-                }
-                else if ((yearMonth.getMonthValue() == 6) && (day == 1 || day == 2)) {
-                    stamp.add(true);
-                }
-                else {
+                int day = i - dayOfWeek;
+                if (day != Integer.parseInt(calendar.get(position).getDate().substring(8))) {
                     stamp.add(false);
                 }
-
+                else {
+                    // 한 명이라도 일기를 적거나 댓글을 적은 경우
+                    if (calendar.get(position).getUserCountDiary() > 0 ||
+                            calendar.get(position).getUserCountComments() > 0) {
+                        stamp.add(true);
+                    }
+                    // 가족 구성원 모두 일기를 적은 경우
+//                            else if (calendar.get(position).getUserCountDiary().equals(calendar.get(position).getUserCountTotal())) {
+//                                stamp.add(true);
+//                            }
+                    else {
+                        stamp.add(false);
+                    }
+                    position++;
+                }
             }
         }
-        return  stamp;
+        return stamp;
     }
 
     private String monthYearFromDate(LocalDate date)

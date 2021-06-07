@@ -63,4 +63,7 @@ public interface RetrofitInterface {
     @DELETE("comments/{commentsId}")
     Call<String> deleteComments(@Path("commentsId") int commentsId);
 
+    //캘린더
+    @GET("calendar")
+    Call<List<Calendar>> getCalendar(@Query("yearMonth") String yearMonth);
 }
