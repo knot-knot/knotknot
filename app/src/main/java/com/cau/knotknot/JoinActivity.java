@@ -221,13 +221,14 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
-        Boolean bJoin = join_email.getText().toString().length() > 0 && join_pwd.getText().toString().length() > 0
-                &&join_pwd_chk.getText().toString().length() > 0 && join_nickname.getText().toString().length() > 0
-                &&join_birth.getText().toString().length() > 0;
 
         join_origin_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Boolean bJoin = join_email.getText().toString().length() > 0 && join_pwd.getText().toString().length() > 0
+                        &&join_pwd_chk.getText().toString().length() > 0 && join_nickname.getText().toString().length() > 0
+                        &&join_birth.getText().toString().length() > 0;
+
                 if(bJoin&&join_fam_code.getText().toString().length() > 0){
                     //..show gif
                     viewDialog.showDialog();
@@ -248,6 +249,10 @@ public class JoinActivity extends AppCompatActivity {
         join_new_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Boolean bJoin = join_email.getText().toString().length() > 0 && join_pwd.getText().toString().length() > 0
+                        &&join_pwd_chk.getText().toString().length() > 0 && join_nickname.getText().toString().length() > 0
+                        &&join_birth.getText().toString().length() > 0;
+
                 if(bJoin){
                     //..show gif
                     viewDialog.showDialog();
@@ -300,7 +305,7 @@ public class JoinActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
-                Toast.makeText(getApplicationContext(),"오류가 발생했습니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"네트워크가 원활하지 않습니다.",Toast.LENGTH_SHORT).show();
 
                 Log.d("retrofit", "Join failed");
                 viewDialog.hideDialog();
