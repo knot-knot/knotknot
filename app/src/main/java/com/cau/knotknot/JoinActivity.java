@@ -221,14 +221,14 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
-        Boolean bJoin = join_email.getText()!=null && join_pwd.getText()!=null
-                &&join_pwd_chk.getText()!=null&&join_nickname.getText()!=null
-                &&join_birth.getText()!=null;
+        Boolean bJoin = join_email.getText().toString().length() > 0 && join_pwd.getText().toString().length() > 0
+                &&join_pwd_chk.getText().toString().length() > 0 && join_nickname.getText().toString().length() > 0
+                &&join_birth.getText().toString().length() > 0;
 
         join_origin_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(bJoin&&join_fam_code.getText()!=null){
+                if(bJoin&&join_fam_code.getText().toString().length() > 0){
                     //..show gif
                     viewDialog.showDialog();
 

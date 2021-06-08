@@ -152,7 +152,7 @@ public class WriteActivity extends AppCompatActivity {
         Map<String, Object> map = new HashMap<>();
         map.put("description", description);
         map.put("emotion", emotion);
-        map.put("createdAt", createdAt);
+//        map.put("createdAt", createdAt);
 
         retrofitInterface.createDiary(map).enqueue((new Callback<String>() {
             @Override
@@ -188,6 +188,7 @@ public class WriteActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"저장되었습니다.",Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(getApplicationContext(),DiaryActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
                 viewDialog.hideDialog();
             }
@@ -195,6 +196,8 @@ public class WriteActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<String> call, @NonNull Throwable t) {
                 Log.d("retrofit", "Diary put failed");
+                Toast.makeText(getApplicationContext(),"네트워크가 원활하지 않습니다.",Toast.LENGTH_SHORT).show();
+                viewDialog.hideDialog();
             }
         }));
     }

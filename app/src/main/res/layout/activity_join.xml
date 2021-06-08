@@ -170,14 +170,14 @@
         android:orientation="horizontal"
         android:layout_marginTop="20dp">
         <TextView
-            android:layout_width="75dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="생년월일 : "
             android:textSize="15dp"
             android:fontFamily="@font/nixgonm"
             />
         <EditText
-            android:layout_width="220dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="0000년 00월 00일"
             android:id="@+id/join_birth"
@@ -205,7 +205,7 @@
             android:textSize="15dp"
             android:fontFamily="@font/nixgonm"/>
         <EditText
-            android:layout_width="220dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="가족코드를 입력해주세요."
             android:id="@+id/join_fam_code"

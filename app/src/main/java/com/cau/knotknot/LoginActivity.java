@@ -51,10 +51,12 @@ public class LoginActivity extends AppCompatActivity {
                 if ( id.getText().toString().length() == 0 ) {
 
                     //공백일 때 에러 메시지
+                    Toast.makeText(getApplicationContext(),"이메일을 입력해주세요.",Toast.LENGTH_SHORT).show();
                 }
                 else if ( pw.getText().toString().length() == 0 ) {
 
                     //공백일 때 에러 메시지
+                    Toast.makeText(getApplicationContext(),"비밀번호를 입력해주세요.",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     //..show gif
